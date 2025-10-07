@@ -1,7 +1,11 @@
-export const App = () => {
+import { Tasks } from './components/Tasks'
+
+function App() {
   return (
     <div>
-      <h1>ola</h1>
+      <Tasks />
     </div>
-  );
-};
+  )
+}
+
+export default App
