@@ -1,0 +1,10 @@
+{
+    "*.js": [
+        "npx prettier --write",
+        "npx eslint --fix --max-warnings=0"
+    ],
+    "*.jsx": [
+        "npx prettier --write",
+        "npx eslint --fix --max-warnings=0"
+    ]
+}
