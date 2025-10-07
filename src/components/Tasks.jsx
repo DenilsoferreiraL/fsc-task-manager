@@ -4,7 +4,7 @@ export const Tasks = () => {
   return (
     <div>
       <Header />
-      <h1>
+      <h1 className="text-red-500">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere vel
         consequuntur hic eligendi laboriosam saepe ipsum aspernatur sed animi
         adipisci illum illo officia, odit impedit dolore culpa veritatis in quam
