@@ -1,7 +1,7 @@
 import { Button } from './Button'
 import AddIcon from '../assets/icons/add.svg?react'
 import TrashIcon from '../assets/icons/trash.svg?react'
-import { InfoDay } from './InfoDay'
+import { InfoDay } from './TasksSeparator'
 import SunIcon from '../assets/icons/sun.svg?react'
 import CloudSunIcon from '../assets/icons/cloud-sun.svg?react'
 import NightIcon from '../assets/icons/night.svg?react'
@@ -33,22 +33,22 @@ export const Tasks = () => {
 
       <div className="rounde-xl bg-white p-6">
         <div className="space-y-3">
-          <InfoDay>
-            <SunIcon className="text-[#9A9C9F]" />
+          <TasksSeparator>
+            <SunIcon />
             Manhã
-          </InfoDay>
+          </TasksSeparator>
         </div>
         <div className="my-6 space-y-3">
-          <InfoDay>
-            <CloudSunIcon className="text-[#9A9C9F]" />
+          <TasksSeparator>
+            <CloudSunIcon />
             Tarde
-          </InfoDay>
+          </TasksSeparator>
         </div>
         <div className="space-y-3">
-          <InfoDay>
-            <NightIcon className="text-[#9A9C9F]" />
+          <TasksSeparator>
+            <NightIcon />
             Noite
-          </InfoDay>
+          </TasksSeparator>
         </div>
       </div>
     </div>
