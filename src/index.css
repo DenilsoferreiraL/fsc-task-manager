@@ -128,5 +128,7 @@
         font-style: italic;
     }
 
-
+    body {
+        @apply bg-[#f8f8f8]
+    }
 }
