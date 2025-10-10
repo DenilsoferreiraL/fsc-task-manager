@@ -1,12 +1,25 @@
 import { Button } from './Button'
 import AddIcon from '../assets/icons/add.svg?react'
 import TrashIcon from '../assets/icons/trash.svg?react'
-import { InfoDay } from './TasksSeparator'
 import SunIcon from '../assets/icons/sun.svg?react'
 import CloudSunIcon from '../assets/icons/cloud-sun.svg?react'
 import NightIcon from '../assets/icons/night.svg?react'
+import { TasksSeparator } from './TasksSeparator'
+import { useState } from 'react'
+import { TASKS } from '../constants/tasks'
+import { TaskItem } from './TaskItem'
 
 export const Tasks = () => {
+  const [tasks, setTasks] = useState(TASKS)
+
+  const clearTasks = () => {
+    setTasks([])
+  }
+
+  const morningTasks = tasks.filter((task) => task.time === 'morning')
+  const afternoonTasks = tasks.filter((task) => task.time === 'afternoon')
+  const eveningTasks = tasks.filter((task) => task.time === 'evening')
+
   return (
     <div className="w-full px-8 py-16">
       <div className="flex w-full justify-between">
@@ -18,7 +31,7 @@ export const Tasks = () => {
         </div>
 
         <div className="flex items-center gap-3">
-          <Button variant="ghost" text="Limpar tarefas">
+          <Button variant="ghost" text="Limpar tarefas" onClick={clearTasks}>
             Limpar tarefas
             <TrashIcon />
           </Button>
@@ -37,18 +50,27 @@ export const Tasks = () => {
             <SunIcon />
             Manhã
           </TasksSeparator>
+          {morningTasks.map((task) => (
+            <TaskItem key={task.id} task={task} />
+          ))}
         </div>
         <div className="my-6 space-y-3">
           <TasksSeparator>
             <CloudSunIcon />
             Tarde
           </TasksSeparator>
+          {afternoonTasks.map((task) => (
+            <TaskItem key={task.id} task={task} />
+          ))}
         </div>
         <div className="space-y-3">
           <TasksSeparator>
             <NightIcon />
             Noite
           </TasksSeparator>
+          {eveningTasks.map((task) => (
+            <TaskItem key={task.id} task={task} />
+          ))}
         </div>
       </div>
     </div>

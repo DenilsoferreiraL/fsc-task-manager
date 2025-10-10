@@ -5,7 +5,7 @@ export const Button = ({ children, variant = 'primary' }) => {
     }
 
     if (variant === 'ghost') {
-      return ' bg-transparent text-[#818181]'
+      return ' bg-transparent text-[#000000]'
     }
   }
 
