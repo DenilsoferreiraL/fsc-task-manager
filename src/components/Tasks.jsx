@@ -20,6 +20,26 @@ export const Tasks = () => {
   const afternoonTasks = tasks.filter((task) => task.time === 'afternoon')
   const eveningTasks = tasks.filter((task) => task.time === 'evening')
 
+  const handleTaskCheckboxClick = (taskId) => {
+    const newTask = tasks.map((task) => {
+      if (task.id !== taskId) {
+        return task
+      }
+
+      if (task.status === 'not_started') {
+        return { ...task, status: 'in_progress' }
+      }
+      if (task.status === 'in_progress') {
+        return { ...task, status: 'done' }
+      }
+      if (task.status === 'done') {
+        return { ...task, status: 'not_started' }
+      }
+      return task
+    })
+    setTasks(newTask)
+  }
+
   return (
     <div className="w-full px-8 py-16">
       <div className="flex w-full justify-between">
@@ -51,7 +71,11 @@ export const Tasks = () => {
             Manhã
           </TasksSeparator>
           {morningTasks.map((task) => (
-            <TaskItem key={task.id} task={task} />
+            <TaskItem
+              key={task.id}
+              task={task}
+              handleTaskCheckboxClick={handleTaskCheckboxClick}
+            />
           ))}
         </div>
         <div className="my-6 space-y-3">
@@ -60,7 +84,11 @@ export const Tasks = () => {
             Tarde
           </TasksSeparator>
           {afternoonTasks.map((task) => (
-            <TaskItem key={task.id} task={task} />
+            <TaskItem
+              key={task.id}
+              task={task}
+              handleTaskCheckboxClick={handleTaskCheckboxClick}
+            />
           ))}
         </div>
         <div className="space-y-3">
@@ -69,7 +97,11 @@ export const Tasks = () => {
             Noite
           </TasksSeparator>
           {eveningTasks.map((task) => (
-            <TaskItem key={task.id} task={task} />
+            <TaskItem
+              key={task.id}
+              task={task}
+              handleTaskCheckboxClick={handleTaskCheckboxClick}
+            />
           ))}
         </div>
       </div>

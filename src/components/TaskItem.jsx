@@ -2,17 +2,17 @@ import CheckIcon from '../assets/icons/check.svg?react'
 import LoaderCircleIcon from '../assets/icons/loader-circle.svg?react'
 import DetailIcon from '../assets/icons/detail.svg?react'
 
-export const TaskItem = ({ task }) => {
+export const TaskItem = ({ task, handleTaskCheckboxClick }) => {
   const getStatusClasses = () => {
     if (task.status === 'done') {
       return 'bg-[#00ADB51A] text-[#002C2E]'
     }
 
-    if (task.status === 'in-progress') {
+    if (task.status === 'in_progress') {
       return 'bg-[#FFAA041A] text-[#FFAA04]'
     }
 
-    if (task.status === 'not-started') {
+    if (task.status === 'not_started') {
       return 'bg-[#35383E0D] text-[#35383E]'
     }
   }
@@ -22,18 +22,18 @@ export const TaskItem = ({ task }) => {
       return 'bg-[#00ADB5] opacity-100'
     }
 
-    if (task.status === 'in-progress') {
+    if (task.status === 'in_progress') {
       return 'bg-[#FFAA04] opacity-100'
     }
 
-    if (task.status === 'not-started') {
+    if (task.status === 'not_started') {
       return 'bg-[#35383E] opacity-10'
     }
   }
 
   return (
     <div
-      className={`flex items-center justify-between gap-2 rounded-lg px-4 py-3 text-sm ${getStatusClasses()}`}
+      className={`flex items-center justify-between gap-2 rounded-lg px-4 py-3 text-sm transition ${getStatusClasses()}`}
     >
       <div className="flex items-center gap-2">
         <label
@@ -44,9 +44,10 @@ export const TaskItem = ({ task }) => {
             checked={task.status === 'done'}
             readOnly
             className="absolute h-full w-full cursor-pointer opacity-0"
+            onChange={() => handleTaskCheckboxClick(task.id)}
           />
           {task.status === 'done' && <CheckIcon className="animate-pulse" />}
-          {task.status === 'in-progress' && (
+          {task.status === 'in_progress' && (
             <LoaderCircleIcon className="animate-spin" />
           )}
         </label>
