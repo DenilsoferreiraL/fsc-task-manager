@@ -12,16 +12,22 @@ import { TaskItem } from './TaskItem'
 export const Tasks = () => {
   const [tasks, setTasks] = useState(TASKS)
 
-  const clearTasks = () => {
-    setTasks([])
-  }
-
   const morningTasks = tasks.filter((task) => task.time === 'morning')
   const afternoonTasks = tasks.filter((task) => task.time === 'afternoon')
   const eveningTasks = tasks.filter((task) => task.time === 'evening')
 
+  const handleTaskDeleteClick = (taskId) => {
+    const newTasks = tasks.filter((task) => {
+      if (task.id !== taskId) {
+        return task
+      }
+    })
+
+    setTasks(newTasks)
+  }
+
   const handleTaskCheckboxClick = (taskId) => {
-    const newTask = tasks.map((task) => {
+    const newTasks = tasks.map((task) => {
       if (task.id !== taskId) {
         return task
       }
@@ -37,7 +43,7 @@ export const Tasks = () => {
       }
       return task
     })
-    setTasks(newTask)
+    setTasks(newTasks)
   }
 
   return (
@@ -51,7 +57,7 @@ export const Tasks = () => {
         </div>
 
         <div className="flex items-center gap-3">
-          <Button variant="ghost" text="Limpar tarefas" onClick={clearTasks}>
+          <Button variant="ghost" text="Limpar tarefas">
             Limpar tarefas
             <TrashIcon />
           </Button>
@@ -75,6 +81,7 @@ export const Tasks = () => {
               key={task.id}
               task={task}
               handleTaskCheckboxClick={handleTaskCheckboxClick}
+              handleTaskDeleteClick={handleTaskDeleteClick}
             />
           ))}
         </div>
@@ -88,6 +95,7 @@ export const Tasks = () => {
               key={task.id}
               task={task}
               handleTaskCheckboxClick={handleTaskCheckboxClick}
+              handleTaskDeleteClick={handleTaskDeleteClick}
             />
           ))}
         </div>
@@ -101,6 +109,7 @@ export const Tasks = () => {
               key={task.id}
               task={task}
               handleTaskCheckboxClick={handleTaskCheckboxClick}
+              handleTaskDeleteClick={handleTaskDeleteClick}
             />
           ))}
         </div>
