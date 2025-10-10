@@ -8,6 +8,7 @@ import { TasksSeparator } from './TasksSeparator'
 import { useState } from 'react'
 import { TASKS } from '../constants/tasks'
 import { TaskItem } from './TaskItem'
+import { toast } from 'sonner'
 
 export const Tasks = () => {
   const [tasks, setTasks] = useState(TASKS)
@@ -21,6 +22,7 @@ export const Tasks = () => {
       if (task.id !== taskId) {
         return task
       }
+      toast.success('Tarefa removida com sucesso!')
     })
 
     setTasks(newTasks)
@@ -33,12 +35,15 @@ export const Tasks = () => {
       }
 
       if (task.status === 'not_started') {
+        toast.success('Tarefa iniciada com sucesso!')
         return { ...task, status: 'in_progress' }
       }
       if (task.status === 'in_progress') {
+        toast.success('Tarefa concluída com sucesso!')
         return { ...task, status: 'done' }
       }
       if (task.status === 'done') {
+        toast.success('Tarefa reiniciada com sucesso')
         return { ...task, status: 'not_started' }
       }
       return task
