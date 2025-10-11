@@ -67,8 +67,11 @@ export const Tasks = () => {
           <Button onClick={() => setAddTaskDialogIsOpen(true)}>
             Nova tarefa
             <I.AddIcon />
-            <AddTaskDialog isOpen={addTaskDialogIsOpen} />
           </Button>
+          <AddTaskDialog
+            isOpen={addTaskDialogIsOpen}
+            handleClose={() => setAddTaskDialogIsOpen(false)}
+          />
         </div>
       </div>
 
