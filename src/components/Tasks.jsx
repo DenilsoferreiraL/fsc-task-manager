@@ -1,9 +1,5 @@
 import { Button } from './Button'
-import AddIcon from '../assets/icons/add.svg?react'
-import TrashIcon from '../assets/icons/trash.svg?react'
-import SunIcon from '../assets/icons/sun.svg?react'
-import CloudSunIcon from '../assets/icons/cloud-sun.svg?react'
-import NightIcon from '../assets/icons/night.svg?react'
+import * as I from '../assets/icons'
 import { TasksSeparator } from './TasksSeparator'
 import { useState } from 'react'
 import { TASKS } from '../constants/tasks'
@@ -18,12 +14,9 @@ export const Tasks = () => {
   const eveningTasks = tasks.filter((task) => task.time === 'evening')
 
   const handleTaskDeleteClick = (taskId) => {
-    const newTasks = tasks.filter((task) => {
-      if (task.id !== taskId) {
-        return task
-      }
-      toast.success('Tarefa removida com sucesso!')
-    })
+    const newTasks = tasks.filter((task) => task.id !== taskId)
+
+    toast.success('Tarefa removida com sucesso!')
 
     setTasks(newTasks)
   }
@@ -38,12 +31,14 @@ export const Tasks = () => {
         toast.success('Tarefa iniciada com sucesso!')
         return { ...task, status: 'in_progress' }
       }
+
       if (task.status === 'in_progress') {
         toast.success('Tarefa concluída com sucesso!')
         return { ...task, status: 'done' }
       }
+
       if (task.status === 'done') {
-        toast.success('Tarefa reiniciada com sucesso')
+        toast.info('Tarefa reiniciada com sucesso')
         return { ...task, status: 'not_started' }
       }
       return task
@@ -64,21 +59,21 @@ export const Tasks = () => {
         <div className="flex items-center gap-3">
           <Button variant="ghost" text="Limpar tarefas">
             Limpar tarefas
-            <TrashIcon />
+            <I.TrashIcon />
           </Button>
           <Button>
             Nova tarefa
-            <AddIcon />
+            <I.AddIcon />
           </Button>
         </div>
       </div>
 
       {/* List task */}
 
-      <div className="rounde-xl bg-white p-6">
+      <div className="rounded-xl bg-white p-6">
         <div className="space-y-3">
           <TasksSeparator>
-            <SunIcon />
+            <I.SunIcon />
             Manhã
           </TasksSeparator>
           {morningTasks.map((task) => (
@@ -92,7 +87,7 @@ export const Tasks = () => {
         </div>
         <div className="my-6 space-y-3">
           <TasksSeparator>
-            <CloudSunIcon />
+            <I.CloudSunIcon />
             Tarde
           </TasksSeparator>
           {afternoonTasks.map((task) => (
@@ -106,7 +101,7 @@ export const Tasks = () => {
         </div>
         <div className="space-y-3">
           <TasksSeparator>
-            <NightIcon />
+            <I.NightIcon />
             Noite
           </TasksSeparator>
           {eveningTasks.map((task) => (

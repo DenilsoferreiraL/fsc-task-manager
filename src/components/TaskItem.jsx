@@ -1,7 +1,4 @@
-import CheckIcon from '../assets/icons/check.svg?react'
-import LoaderCircleIcon from '../assets/icons/loader-circle.svg?react'
-import DetailIcon from '../assets/icons/detail.svg?react'
-import TrashIcon from '../assets/icons/trash.svg?react'
+import * as I from '../assets/icons'
 import { Button } from '../components/Button'
 
 export const TaskItem = ({
@@ -52,9 +49,9 @@ export const TaskItem = ({
             className="absolute h-full w-full cursor-pointer opacity-0"
             onChange={() => handleTaskCheckboxClick(task.id)}
           />
-          {task.status === 'done' && <CheckIcon className="animate-pulse" />}
+          {task.status === 'done' && <I.CheckIcon className="animate-pulse" />}
           {task.status === 'in_progress' && (
-            <LoaderCircleIcon className="animate-spin" />
+            <I.LoaderCircleIcon className="animate-spin" />
           )}
         </label>
 
@@ -62,10 +59,10 @@ export const TaskItem = ({
       </div>
       <div className="flex items-center gap-2">
         <Button variant="ghost" onClick={() => handleTaskDeleteClick(task.id)}>
-          <TrashIcon className="text-[#9a9c9f]" />
+          <I.TrashIcon className="text-[#9a9c9f]" />
         </Button>
         <a href="#" className="transition hover:opacity-75">
-          <DetailIcon />
+          <I.DetailIcon />
         </a>
       </div>
     </div>
