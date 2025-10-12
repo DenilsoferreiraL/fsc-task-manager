@@ -21,7 +21,7 @@ export const Button = ({
     }
 
     if (size === ' large') {
-      return 'py-2 text-md'
+      return 'py-2 text-md text-[#000]'
     }
   }
 
