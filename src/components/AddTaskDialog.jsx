@@ -3,6 +3,7 @@ import './AddTaskDialog.css'
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { CSSTransition } from 'react-transition-group'
+import { toast } from 'sonner'
 import { v4 } from 'uuid'
 
 import { Button } from './Button'
@@ -13,7 +14,7 @@ export const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
   useEffect(() => {
     if (!isOpen) {
       setTitle('')
-      setTime('')
+      setTime('morning')
       setDescription('')
     }
   }, [isOpen])
@@ -23,6 +24,10 @@ export const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
   const [description, setDescription] = useState('')
 
   const handleSaveClick = () => {
+    if (!title.trim() || !time.trim() || !description.trim()) {
+      return toast.error('Preencha todos os campos!')
+    }
+
     {
       handleSubmit({
         id: v4(),
@@ -59,7 +64,7 @@ export const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
           <div className="flex w-[366px] flex-col space-y-4">
             <Input
               id="title"
-              label="Titulo"
+              label="Titulo*"
               placeholder="Título de tarefa"
               onChange={(e) => setTitle(e.target.value)}
               value={title}
@@ -71,7 +76,7 @@ export const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
             <Input
               id="description"
               placeholder="Descreva a tarefa"
-              label="Descrição"
+              label="Descrição*"
               onChange={(e) => {
                 setDescription(e.target.value)
               }}
