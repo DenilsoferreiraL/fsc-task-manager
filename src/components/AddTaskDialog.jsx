@@ -1,6 +1,6 @@
 import './AddTaskDialog.css'
 
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { CSSTransition } from 'react-transition-group'
 import { v4 } from 'uuid'
@@ -10,7 +10,13 @@ import { Input } from './Input'
 import { TimeSelect } from './TimeSelect'
 
 export const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
-  const nodeRef = useRef(null)
+  useEffect(() => {
+    if (!isOpen) {
+      setTitle('')
+      setTime('')
+      setDescription('')
+    }
+  }, [isOpen])
 
   const [title, setTitle] = useState('')
   const [time, setTime] = useState('morning')
@@ -29,6 +35,8 @@ export const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
       handleClose()
     }
   }
+
+  const nodeRef = useRef(null)
 
   return createPortal(
     <CSSTransition
@@ -64,7 +72,9 @@ export const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
               id="description"
               placeholder="Descreva a tarefa"
               label="Descrição"
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={(e) => {
+                setDescription(e.target.value)
+              }}
               value={description}
             />
             <div className="flex gap-3">
