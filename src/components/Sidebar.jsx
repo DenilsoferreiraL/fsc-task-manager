@@ -6,10 +6,12 @@ export const Sidebar = () => {
   return (
     <div className="h-screen w-72 bg-white">
       <div className="space-y-4 px-8 py-6">
-        <h1 className="text-xl font-semibold text-[#00ADB5]">Task Manager</h1>
+        <h1 className="text-xl font-semibold text-brand-primary">
+          Task Manager
+        </h1>
         <p className="text-sm">
           Um simples{' '}
-          <span className="text-sm font-semibold text-[#00ADB5]">
+          <span className="text-sm font-semibold text-brand-primary">
             organizador de tarefas
           </span>
         </p>

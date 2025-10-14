@@ -12,25 +12,25 @@ export const TaskItem = ({
     }
 
     if (task.status === 'in_progress') {
-      return 'bg-[#FFAA041A] text-[#FFAA04]'
+      return 'bg-[#FFAA041A] text-brand-process'
     }
 
     if (task.status === 'not_started') {
-      return 'bg-[#35383E0D] text-[#35383E]'
+      return 'bg-[#35383E0D] text-brand-dark-blue'
     }
   }
 
   const getCheckboxClasses = () => {
     if (task.status === 'done') {
-      return 'bg-[#00ADB5] opacity-100'
+      return 'bg-brand-primary opacity-100'
     }
 
     if (task.status === 'in_progress') {
-      return 'bg-[#FFAA04] opacity-100'
+      return 'bg-brand-process opacity-100'
     }
 
     if (task.status === 'not_started') {
-      return 'bg-[#35383E] opacity-10'
+      return 'bg-brand-dark-blue opacity-10'
     }
   }
 
@@ -59,7 +59,7 @@ export const TaskItem = ({
       </div>
       <div className="flex items-center gap-2">
         <Button variant="ghost" onClick={() => handleTaskDeleteClick(task.id)}>
-          <I.TrashIcon className="text-[#9a9c9f]" />
+          <I.TrashIcon className="text-brand-text-gray" />
         </Button>
         <a href="#" className="transition hover:opacity-75">
           <I.DetailIcon />
