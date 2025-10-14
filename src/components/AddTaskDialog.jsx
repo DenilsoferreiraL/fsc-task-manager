@@ -10,45 +10,52 @@ import { Input } from './Input'
 import { TimeSelect } from './TimeSelect'
 
 export const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
+  const titleRef = useRef(null)
+  const timeRef = useRef(null)
+  const descriptionRef = useRef(null)
+
+  const [errors, setErrors] = useState([])
+
   useEffect(() => {
     if (!isOpen) {
-      setTitle('')
-      setTime('morning')
-      setDescription('')
+      if (titleRef.current) titleRef.current.value = ''
+      if (timeRef.current) timeRef.current.value = ''
+      if (descriptionRef.current) descriptionRef.current.value = ''
+      setErrors([])
     }
   }, [isOpen])
 
-  const [title, setTitle] = useState('')
-  const [time, setTime] = useState('morning')
-  const [description, setDescription] = useState('')
-  const [errors, setErrors] = useState([])
-
   const handleSaveClick = () => {
+    const title = titleRef.current?.value.trim() || ''
+    const time = timeRef.current?.value.trim() || ''
+    const description = descriptionRef.current?.value.trim() || ''
+
     const newErrors = []
 
-    if (!title.trim()) {
+    if (!title) {
       newErrors.push({
         inputName: 'title',
-        message: 'O título é obrigatório',
+        message: 'O título é obrigatório.',
       })
     }
-    if (!time.trim()) {
+
+    if (!time) {
       newErrors.push({
         inputName: 'time',
-        message: 'O horário é obrigatório',
+        message: 'O título é obrigatório.',
       })
     }
-    if (!description.trim()) {
+
+    if (!description) {
       newErrors.push({
         inputName: 'description',
-        message: 'A descrição é obrigatória',
+        message: 'O título é obrigatório.',
       })
     }
+
     setErrors(newErrors)
 
-    if (newErrors.length > 0) {
-      return
-    }
+    if (newErrors.length > 0) return
 
     handleSubmit({
       id: v4(),
@@ -61,13 +68,10 @@ export const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
     handleClose()
   }
 
-  const titleError = errors.find((error) => error.inputName === 'title')
-  const timeError = errors.find((error) => error.inputName === 'time')
-  const descriptionError = errors.find(
-    (error) => error.inputName === 'description'
-  )
-
   const nodeRef = useRef(null)
+  const titleError = errors.find((e) => e.inputName === 'title')
+  const timeError = errors.find((e) => e.inputName === 'time')
+  const descriptionError = errors.find((e) => e.inputName === 'description')
 
   return createPortal(
     <CSSTransition
@@ -92,25 +96,17 @@ export const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
               id="title"
               label="Titulo*"
               placeholder="Título de tarefa"
-              onChange={(e) => setTitle(e.target.value)}
-              value={title}
+              ref={titleRef}
               errorMessage={titleError?.message}
             />
 
-            <TimeSelect
-              onChange={(e) => setTime(e.target.value)}
-              value={time}
-              errorMessage={timeError?.message}
-            />
+            <TimeSelect ref={timeRef} errorMessage={timeError?.message} />
 
             <Input
               id="description"
               placeholder="Descreva a tarefa"
               label="Descrição*"
-              onChange={(e) => {
-                setDescription(e.target.value)
-              }}
-              value={description}
+              ref={descriptionRef}
               errorMessage={descriptionError?.message}
             />
 
