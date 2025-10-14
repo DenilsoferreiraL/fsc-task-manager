@@ -3,7 +3,6 @@ import './AddTaskDialog.css'
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { CSSTransition } from 'react-transition-group'
-import { toast } from 'sonner'
 import { v4 } from 'uuid'
 
 import { Button } from './Button'
@@ -22,24 +21,51 @@ export const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
   const [title, setTitle] = useState('')
   const [time, setTime] = useState('morning')
   const [description, setDescription] = useState('')
+  const [errors, setErrors] = useState([])
 
   const handleSaveClick = () => {
-    if (!title.trim() || !time.trim() || !description.trim()) {
-      return toast.error('Preencha todos os campos!')
-    }
+    const newErrors = []
 
-    {
-      handleSubmit({
-        id: v4(),
-        title,
-        time,
-        description,
-        status: 'not_started',
+    if (!title.trim()) {
+      newErrors.push({
+        inputName: 'title',
+        message: 'O título é obrigatório',
       })
-
-      handleClose()
     }
+    if (!time.trim()) {
+      newErrors.push({
+        inputName: 'time',
+        message: 'O horário é obrigatório',
+      })
+    }
+    if (!description.trim()) {
+      newErrors.push({
+        inputName: 'description',
+        message: 'A descrição é obrigatória',
+      })
+    }
+    setErrors(newErrors)
+
+    if (newErrors.length > 0) {
+      return
+    }
+
+    handleSubmit({
+      id: v4(),
+      title,
+      time,
+      description,
+      status: 'not_started',
+    })
+
+    handleClose()
   }
+
+  const titleError = errors.find((error) => error.inputName === 'title')
+  const timeError = errors.find((error) => error.inputName === 'time')
+  const descriptionError = errors.find(
+    (error) => error.inputName === 'description'
+  )
 
   const nodeRef = useRef(null)
 
@@ -68,11 +94,15 @@ export const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
               placeholder="Título de tarefa"
               onChange={(e) => setTitle(e.target.value)}
               value={title}
+              errorMessage={titleError?.message}
             />
+
             <TimeSelect
               onChange={(e) => setTime(e.target.value)}
               value={time}
+              errorMessage={timeError?.message}
             />
+
             <Input
               id="description"
               placeholder="Descreva a tarefa"
@@ -81,7 +111,9 @@ export const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
                 setDescription(e.target.value)
               }}
               value={description}
+              errorMessage={descriptionError?.message}
             />
+
             <div className="flex gap-3">
               <Button
                 className="w-full bg-[#EEEEEE] text-[#010101]"
