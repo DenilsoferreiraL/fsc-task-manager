@@ -4,18 +4,21 @@ import PropTypes from 'prop-types'
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { CSSTransition } from 'react-transition-group'
+import { toast } from 'sonner'
 import { v4 } from 'uuid'
 
+import * as I from '../assets/icons' // Importando os ícones
 import { Button } from './Button'
 import { Input } from './Input'
 import { TimeSelect } from './TimeSelect'
 
-export const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
+export const AddTaskDialog = ({ isOpen, handleClose, onSubmitSuccess }) => {
+  const [submitIsLoading, setSubmitIsLoading] = useState(false)
+  const [errors, setErrors] = useState([])
+
   const titleRef = useRef(null)
   const timeRef = useRef(null)
   const descriptionRef = useRef(null)
-
-  const [errors, setErrors] = useState([])
 
   useEffect(() => {
     if (!isOpen) {
@@ -23,8 +26,37 @@ export const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
       if (timeRef.current) timeRef.current.value = ''
       if (descriptionRef.current) descriptionRef.current.value = ''
       setErrors([])
+      setSubmitIsLoading(false)
     }
   }, [isOpen])
+
+  const handleSubmitToServer = async (task) => {
+    setSubmitIsLoading(true)
+
+    try {
+      const response = await fetch('http://localhost:3000/tasks', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(task),
+      })
+
+      if (!response.ok) {
+        throw new Error('Erro ao adicionar tarefa')
+      }
+
+      const newTask = await response.json()
+      onSubmitSuccess(newTask)
+      handleClose()
+      toast.success('Tarefa adicionada com sucesso!')
+    } catch (error) {
+      console.error(error)
+      toast.error('Erro ao adicionar a tarefa. Por favor, tente novamente.')
+    } finally {
+      setSubmitIsLoading(false)
+    }
+  }
 
   const handleSaveClick = () => {
     const title = titleRef.current?.value.trim() || ''
@@ -58,15 +90,15 @@ export const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
 
     if (newErrors.length > 0) return
 
-    handleSubmit({
+    const newTask = {
       id: v4(),
       title,
       time,
       description,
       status: 'not_started',
-    })
+    }
 
-    handleClose()
+    handleSubmitToServer(newTask)
   }
 
   const nodeRef = useRef(null)
@@ -117,19 +149,33 @@ export const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
               <Button
                 className="w-full bg-brand-light-gray"
                 size="large"
-                onClick={() => handleClose()}
+                onClick={handleClose}
                 color="ghost"
+                disabled={submitIsLoading}
               >
                 Cancelar
               </Button>
-              <Button
-                className="w-full"
-                color="primary"
-                size="large"
-                onClick={handleSaveClick}
-              >
-                Salvar
-              </Button>
+
+              {submitIsLoading ? (
+                <Button
+                  className="flex w-full items-center justify-center"
+                  color="primary"
+                  size="large"
+                  disabled
+                >
+                  <I.LoaderCircleIcon className="mr-2 animate-spin" />
+                  Salvando...
+                </Button>
+              ) : (
+                <Button
+                  className="w-full"
+                  color="primary"
+                  size="large"
+                  onClick={handleSaveClick}
+                >
+                  Salvar
+                </Button>
+              )}
             </div>
           </div>
         </div>
@@ -142,5 +188,5 @@ export const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
 AddTaskDialog.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
+  onSubmitSuccess: PropTypes.func.isRequired,
 }
