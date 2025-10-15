@@ -163,7 +163,10 @@ export const AddTaskDialog = ({ isOpen, handleClose, onSubmitSuccess }) => {
                   size="large"
                   disabled
                 >
-                  <I.LoaderCircleIcon className="mr-2 animate-spin" />
+                  <I.LoaderCircleIcon
+                    color="disabled"
+                    className="mr-2 animate-spin"
+                  />
                   Salvando...
                 </Button>
               ) : (

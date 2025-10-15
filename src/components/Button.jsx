@@ -9,7 +9,7 @@ export const Button = ({
   ...rest
 }) => {
   const button = tv({
-    base: 'flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-semibold transition hover:opacity-70',
+    base: `flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-semibold transition hover:opacity-70`,
     variants: {
       color: {
         primary: 'bg-brand-primary text-brand-white',
@@ -20,6 +20,9 @@ export const Button = ({
         small: 'py-1 text-sm',
         large: 'py-2 text-sm',
       },
+      disabled: {
+        true: 'cursor-not-allowed opacity-50 hover:opacity-50',
+      },
     },
     defaultVariants: {
       color: 'primary',
@@ -28,7 +31,10 @@ export const Button = ({
   })
 
   return (
-    <button className={button({ color, size, className })} {...rest}>
+    <button
+      className={button({ color, size, disabled: rest.disabled, className })}
+      {...rest}
+    >
       {children}
     </button>
   )
