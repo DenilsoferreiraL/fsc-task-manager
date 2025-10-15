@@ -27,35 +27,65 @@ export const Tasks = () => {
   const afternoonTasks = tasks.filter((task) => task.time === 'afternoon')
   const eveningTasks = tasks.filter((task) => task.time === 'evening')
 
-  const handleTaskCheckboxClick = (taskId) => {
-    const newTasks = tasks.map((task) => {
-      if (task.id !== taskId) {
-        return task
-      }
+  const handleTaskCheckboxClick = async (taskId) => {
+    const updatedTasks = tasks.map((task) => {
+      if (task.id !== taskId) return task
+
+      let newStatus = task.status
 
       if (task.status === 'not_started') {
+        newStatus = 'in_progress'
         toast.success('Tarefa iniciada com sucesso!')
-        return { ...task, status: 'in_progress' }
-      }
-
-      if (task.status === 'in_progress') {
+      } else if (task.status === 'in_progress') {
+        newStatus = 'done'
         toast.success('Tarefa concluída com sucesso!')
-        return { ...task, status: 'done' }
+      } else if (task.status === 'done') {
+        newStatus = 'not_started'
+        toast.info('Tarefa reiniciada com sucesso!')
       }
 
-      if (task.status === 'done') {
-        toast.info('Tarefa reiniciada com sucesso')
-        return { ...task, status: 'not_started' }
-      }
-      return task
+      return { ...task, status: newStatus }
     })
-    setTasks(newTasks)
+
+    setTasks(updatedTasks)
+
+    const updatedTask = updatedTasks.find((t) => t.id === taskId)
+
+    try {
+      const response = await fetch(`http://localhost:3000/tasks/${taskId}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ status: updatedTask.status }),
+      })
+
+      if (!response.ok) {
+        throw new Error('Erro ao atualizar tarefa no servidor')
+      }
+    } catch (error) {
+      console.error(error)
+      toast.error('Erro ao atualizar o status da tarefa!')
+    }
   }
 
-  const handleTaskDeleteClick = (taskId) => {
-    const newTasks = tasks.filter((task) => task.id !== taskId)
-    toast.success('Tarefa removida com sucesso!')
-    setTasks(newTasks)
+  const handleTaskDeleteClick = async (taskId) => {
+    try {
+      const response = await fetch(`http://localhost:3000/tasks/${taskId}`, {
+        method: 'DELETE',
+      })
+
+      if (!response.ok) {
+        throw new Error('Erro ao deletar tarefa')
+      }
+
+      setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId))
+
+      toast.success('Tarefa removida com sucesso!')
+    } catch (error) {
+      console.error(error)
+      toast.error('Erro ao remover a tarefa. Tente novamente.')
+    }
   }
 
   const handleAddTaskSubmit = async (task) => {

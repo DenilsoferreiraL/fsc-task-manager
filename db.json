@@ -5,28 +5,28 @@
       "title": "Ir para academia",
       "description": "Exemplo",
       "time": "morning",
-      "status": "done"
+      "status": "not_started"
     },
     {
       "id": "2",
       "title": "Momento devocional",
       "description": "Exemplo",
       "time": "morning",
-      "status": "done"
+      "status": "not_started"
     },
     {
       "id": "3",
       "title": "Ler",
       "description": "Exemplo",
       "time": "morning",
-      "status": "not_started"
+      "status": "done"
     },
     {
       "id": "4",
       "title": "Estudar pelo menos 45min",
       "description": "Exemplo",
       "time": "morning",
-      "status": "in_progress"
+      "status": "done"
     },
     {
       "id": "5",
@@ -47,27 +47,6 @@
       "title": "Ler",
       "description": "Exemplo",
       "time": "evening",
-      "status": "not_started"
-    },
-    {
-      "id": "4e561291-ee91-4dee-82ed-9b1930f8b913",
-      "title": "123",
-      "time": "morning",
-      "description": "123",
-      "status": "not_started"
-    },
-    {
-      "id": "a44f05d5-d163-41bf-b035-81254354515d",
-      "title": "teste",
-      "time": "morning",
-      "description": "teste",
-      "status": "not_started"
-    },
-    {
-      "id": "2a9ae277-67fc-458e-a01f-765f73a6f6aa",
-      "title": "Correr pela noite",
-      "time": "evening",
-      "description": "pelas 20hrs",
       "status": "not_started"
     }
   ]
