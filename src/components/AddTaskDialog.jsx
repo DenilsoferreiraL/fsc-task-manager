@@ -43,14 +43,14 @@ export const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
     if (!time) {
       newErrors.push({
         inputName: 'time',
-        message: 'O título é obrigatório.',
+        message: 'O horário é obrigatório.',
       })
     }
 
     if (!description) {
       newErrors.push({
         inputName: 'description',
-        message: 'O título é obrigatório.',
+        message: 'A descrição é obrigatória.',
       })
     }
 
