@@ -83,10 +83,8 @@ export const Tasks = () => {
 
       <div className="rounded-xl bg-white p-6">
         <div className="space-y-3">
-          <TasksSeparator>
-            <I.SunIcon />
-            Manhã
-          </TasksSeparator>
+          <TasksSeparator title={'Manhã'} icon={<I.SunIcon />} />
+
           {morningTasks.map((task) => (
             <TaskItem
               key={task.id}
@@ -97,10 +95,7 @@ export const Tasks = () => {
           ))}
         </div>
         <div className="my-6 space-y-3">
-          <TasksSeparator>
-            <I.CloudSunIcon />
-            Tarde
-          </TasksSeparator>
+          <TasksSeparator title={'Tarde'} icon={<I.CloudSunIcon />} />
           {afternoonTasks.map((task) => (
             <TaskItem
               key={task.id}
@@ -111,10 +106,8 @@ export const Tasks = () => {
           ))}
         </div>
         <div className="space-y-3">
-          <TasksSeparator>
-            <I.NightIcon />
-            Noite
-          </TasksSeparator>
+          <TasksSeparator title={'Noite'} icon={<I.NightIcon />} />
+
           {eveningTasks.map((task) => (
             <TaskItem
               key={task.id}
