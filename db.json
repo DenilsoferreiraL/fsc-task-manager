@@ -1,53 +1,25 @@
 {
   "tasks": [
     {
-      "id": "1",
-      "title": "Ir para academia",
-      "description": "Exemplo",
+      "id": "143d3336-18f7-4d2a-a2b4-59240f2e0841",
+      "title": "teste manha",
       "time": "morning",
-      "status": "not_started"
-    },
-    {
-      "id": "2",
-      "title": "Momento devocional",
-      "description": "Exemplo",
-      "time": "morning",
-      "status": "not_started"
-    },
-    {
-      "id": "3",
-      "title": "Ler",
-      "description": "Exemplo",
-      "time": "morning",
+      "description": "teste",
       "status": "done"
     },
     {
-      "id": "4",
-      "title": "Estudar pelo menos 45min",
-      "description": "Exemplo",
-      "time": "morning",
+      "id": "510a4c98-50c7-4cd9-9903-cd5ae67fe57e",
+      "title": "teste tarde",
+      "time": "afternoon",
+      "description": "teste",
       "status": "done"
     },
     {
-      "id": "5",
-      "title": "Trabalhar focado",
-      "description": "Exemplo",
-      "time": "afternoon",
-      "status": "not_started"
-    },
-    {
-      "id": "6",
-      "title": "Estudar pelo menos 30min",
-      "description": "Exemplo",
-      "time": "afternoon",
-      "status": "not_started"
-    },
-    {
-      "id": "7",
-      "title": "Ler",
-      "description": "Exemplo",
+      "id": "85cfc436-80f1-4f42-a824-158701df848e",
+      "title": "teste noite",
       "time": "evening",
-      "status": "not_started"
+      "description": "teste",
+      "status": "done"
     }
   ]
 }

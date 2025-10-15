@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
 import * as I from '../assets/icons'
-import { TASKS } from '../constants/tasks'
 import { AddTaskDialog } from './AddTaskDialog'
 import { Button } from './Button'
 import { TaskItem } from './TaskItem'
@@ -69,23 +68,9 @@ export const Tasks = () => {
     }
   }
 
-  const handleTaskDeleteClick = async (taskId) => {
-    try {
-      const response = await fetch(`http://localhost:3000/tasks/${taskId}`, {
-        method: 'DELETE',
-      })
-
-      if (!response.ok) {
-        throw new Error('Erro ao deletar tarefa')
-      }
-
-      setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId))
-
-      toast.success('Tarefa removida com sucesso!')
-    } catch (error) {
-      console.error(error)
-      toast.error('Erro ao remover a tarefa. Tente novamente.')
-    }
+  const onDeleteTaskSuccess = async (taskId) => {
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId))
+    toast.success('Tarefa deletada com sucesso!')
   }
 
   const handleAddTaskSubmit = async (task) => {
@@ -99,7 +84,6 @@ export const Tasks = () => {
         'Erro ao adicionar a tarefa. Por favor, tente novamente.'
       )
     }
-    console.log(response)
 
     setTasks([...tasks, task])
     toast.success('Tarefa adicionada com sucesso!')
@@ -143,7 +127,7 @@ export const Tasks = () => {
               key={task.id}
               task={task}
               handleTaskCheckboxClick={handleTaskCheckboxClick}
-              handleTaskDeleteClick={handleTaskDeleteClick}
+              onDeleteSuccess={onDeleteTaskSuccess}
             />
           ))}
         </div>
@@ -154,7 +138,7 @@ export const Tasks = () => {
               key={task.id}
               task={task}
               handleTaskCheckboxClick={handleTaskCheckboxClick}
-              handleTaskDeleteClick={handleTaskDeleteClick}
+              onDeleteSuccess={onDeleteTaskSuccess}
             />
           ))}
         </div>
@@ -166,7 +150,7 @@ export const Tasks = () => {
               key={task.id}
               task={task}
               handleTaskCheckboxClick={handleTaskCheckboxClick}
-              handleTaskDeleteClick={handleTaskDeleteClick}
+              onDeleteSuccess={onDeleteTaskSuccess}
             />
           ))}
         </div>
