@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types'
+
 import * as I from '../assets/icons'
 import { Button } from '../components/Button'
 
@@ -67,4 +69,16 @@ export const TaskItem = ({
       </div>
     </div>
   )
+}
+
+TaskItem.propTypes = {
+  task: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    time: PropTypes.oneOf(['morning', 'afternoon', 'evening']).isRequired,
+    status: PropTypes.oneOf(['not_started', 'in_progress', 'done']).isRequired,
+  }).isRequired,
+  handleTaskCheckboxClick: PropTypes.func.isRequired,
+  handleTaskDeleteClick: PropTypes.func.isRequired,
 }
