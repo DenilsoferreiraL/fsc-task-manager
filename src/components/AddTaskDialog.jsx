@@ -7,7 +7,7 @@ import { CSSTransition } from 'react-transition-group'
 import { toast } from 'sonner'
 import { v4 } from 'uuid'
 
-import * as I from '../assets/icons' // Importando os ícones
+import * as I from '../assets/icons'
 import { Button } from './Button'
 import { Input } from './Input'
 import { TimeSelect } from './TimeSelect'

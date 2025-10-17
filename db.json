@@ -1,13 +1,6 @@
 {
   "tasks": [
     {
-      "id": "143d3336-18f7-4d2a-a2b4-59240f2e0841",
-      "title": "teste manha",
-      "time": "morning",
-      "description": "teste",
-      "status": "done"
-    },
-    {
       "id": "510a4c98-50c7-4cd9-9903-cd5ae67fe57e",
       "title": "teste tarde",
       "time": "afternoon",
@@ -20,6 +13,27 @@
       "time": "evening",
       "description": "teste",
       "status": "done"
+    },
+    {
+      "id": "56751e94-77f3-4517-bad7-7208df9493a8",
+      "title": "teste",
+      "time": "morning",
+      "description": "teste",
+      "status": "in_progress"
+    },
+    {
+      "id": "7b8f9b19-a026-4543-87b3-e2da5b15ba99",
+      "title": "Acordar cedo",
+      "time": "morning",
+      "description": "*Irei tomar café bem reforçado e treinar de manhã.",
+      "status": "in_progress"
+    },
+    {
+      "id": "bbe7639c-6e0d-4f3f-9c71-56bf7e13e1cc",
+      "title": "Ir para academia",
+      "time": "morning",
+      "description": "Vamos",
+      "status": "not_started"
     }
   ]
 }

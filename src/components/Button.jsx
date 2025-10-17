@@ -15,7 +15,7 @@ export const Button = ({
         primary: 'bg-brand-primary text-brand-white',
         secondary: 'bg-brand-light-gray text-brand-dark-blue',
         ghost: 'bg-transparent text-brand-dark-gray',
-        rounded: 'rounded-full bg-brand-primary',
+        danger: 'bg-brand-danger text-brand-white',
       },
       size: {
         small: 'py-1 text-sm',
@@ -43,7 +43,7 @@ export const Button = ({
 
 Button.propsTypes = {
   children: PropTypes.node.isRequired,
-  color: PropTypes.oneOf(['primary', 'ghost', 'secondary']),
+  color: PropTypes.oneOf(['primary', 'ghost', 'secondary', 'danger']),
   size: PropTypes.oneOf(['small', 'large']),
   className: PropTypes.string,
 }
