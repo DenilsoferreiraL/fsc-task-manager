@@ -1,38 +1,38 @@
 {
   "tasks": [
     {
-      "id": "510a4c98-50c7-4cd9-9903-cd5ae67fe57e",
-      "title": "teste tarde",
+      "id": "3a327305-188d-4e54-81a7-404fa2aaa0ee",
+      "title": "Trabalho & Estudos",
+      "time": "morning",
+      "description": "Revisar relatório trimestral  Descrição: Conferir dados, gráficos e formatação do relatório antes do envio para a diretoria.  Preparar apresentação para reunião de equipe  Descrição: Criar slides com os tópicos principais: resultados da semana, metas e bloqueadores.  Finalizar módulo do curso online  Descrição: Assistir às duas videoaulas restantes e completar o quiz de avaliação.",
+      "status": "not_started"
+    },
+    {
+      "id": "4388cac7-5129-42b4-9179-8b6163ff48c9",
+      "title": "Casa & Vida Pessoal",
       "time": "afternoon",
-      "description": "teste",
-      "status": "done"
+      "description": "Fazer compras do mês  Descrição: Listar itens de higiene, limpeza e alimentos para o supermercado.  Limpar e organizar o armário  Descrição: Separar roupas para doação e reorganizar o espaço por estação.  Agendar consulta médica  Descrição: Ligar para o clínico geral para fazer o check-up anual.",
+      "status": "not_started"
     },
     {
-      "id": "85cfc436-80f1-4f42-a824-158701df848e",
-      "title": "teste noite",
-      "time": "evening",
-      "description": "teste",
-      "status": "done"
-    },
-    {
-      "id": "56751e94-77f3-4517-bad7-7208df9493a8",
-      "title": "teste",
-      "time": "morning",
-      "description": "teste",
-      "status": "in_progress"
-    },
-    {
-      "id": "7b8f9b19-a026-4543-87b3-e2da5b15ba99",
-      "title": "Acordar cedo",
-      "time": "morning",
-      "description": "*Irei tomar café bem reforçado e treinar de manhã.",
-      "status": "in_progress"
-    },
-    {
-      "id": "bbe7639c-6e0d-4f3f-9c71-56bf7e13e1cc",
+      "id": "e4d99a66-dfe5-48a2-95ca-6366424624f3",
       "title": "Ir para academia",
+      "time": "evening",
+      "description": "Peito \nSupino Reto com Barra: 4x8-12 Supino Inclinado com Halteres: 3x10-12 Crucifixo Máquina: 3x12-15 \nOmbro Desenvolvimento Militar com Barra:\n4x8-12 Elevação Lateral com Halteres: 3x12-15 Elevação Frontal com Halteres: 3x12-15",
+      "status": "not_started"
+    },
+    {
+      "id": "7d4a79c6-e215-4bc8-8496-3e522faf49d4",
+      "title": "Saúde & Bem-Estar",
       "time": "morning",
-      "description": "Vamos",
+      "description": "Planejar refeições da semana\n\nDescrição: Definir o cardápio de almoço e jantar para facilitar a rotina.\n\nFazer 30 minutos de exercício\n\nDescrição: Pode ser uma caminhada, yoga ou treino em casa.\n\nMeditar antes de dormir\n\nDescrição: Praticar 10 minutos de meditação guiada para melhorar a qualidade do sono.",
+      "status": "in_progress"
+    },
+    {
+      "id": "cf5083ce-b4a7-4ac6-b656-1eaf7d3255ac",
+      "title": "Projetos Pessoais",
+      "time": "afternoon",
+      "description": "Atualizar portfólio online\n\nDescrição: Adicionar os dois projetos mais recentes e revisar os links.\n\nEscrever rascunho do artigo para o blog\n\nDescrição: Desenvolver os tópicos principais e escrever a introdução sobre [assunto].\n\nEstudar funcionalidades do novo software\n\nDescrição: Dedicar 1 hora para explorar os tutoriais iniciais do programa.",
       "status": "not_started"
     }
   ]

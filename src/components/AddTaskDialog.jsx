@@ -10,6 +10,7 @@ import { v4 } from 'uuid'
 import * as I from '../assets/icons'
 import { Button } from './Button'
 import { Input } from './Input'
+import { TextArea } from './TextArea'
 import { TimeSelect } from './TimeSelect'
 
 export const AddTaskDialog = ({ isOpen, handleClose, onSubmitSuccess }) => {
@@ -141,8 +142,7 @@ export const AddTaskDialog = ({ isOpen, handleClose, onSubmitSuccess }) => {
               errorMessage={timeError?.message}
               disabled={submitIsLoading}
             />
-
-            <Input
+            <TextArea
               id="description"
               placeholder="Descreva a tarefa"
               label="Descrição*"
