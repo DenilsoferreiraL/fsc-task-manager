@@ -130,6 +130,7 @@ export const TaskDetailsPage = () => {
               <Input
                 id="title"
                 label="Titulo*"
+                disabled={isSubmitting}
                 {...register('title', {
                   required: ' O título é obrigatório.',
                   validate: (value) => {
@@ -145,6 +146,7 @@ export const TaskDetailsPage = () => {
 
             <div>
               <TimeSelect
+                disabled={isSubmitting}
                 {...register('time', {
                   required: 'O horário é obrigatório.',
                 })}
@@ -156,6 +158,7 @@ export const TaskDetailsPage = () => {
               <TextArea
                 id="description"
                 label="Descrição*"
+                disabled={isSubmitting}
                 {...register('description', {
                   required: 'A descrição é obrigatória.',
                   validate: (value) => {
@@ -177,7 +180,7 @@ export const TaskDetailsPage = () => {
                 className="flex items-center justify-center"
                 color="primary"
                 size="large"
-                disabled
+                disabled={isSubmitting}
               >
                 <I.LoaderCircleIcon className="mr-2 animate-spin" />
                 Salvando...
