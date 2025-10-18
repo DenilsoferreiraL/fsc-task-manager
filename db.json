@@ -26,13 +26,34 @@
       "title": "Saúde & Bem-Estar",
       "time": "morning",
       "description": "Planejar refeições da semana\n\nDescrição: Definir o cardápio de almoço e jantar para facilitar a rotina.\n\nFazer 30 minutos de exercício\n\nDescrição: Pode ser uma caminhada, yoga ou treino em casa.\n\nMeditar antes de dormir\n\nDescrição: Praticar 10 minutos de meditação guiada para melhorar a qualidade do sono.",
-      "status": "in_progress"
+      "status": "not_started"
     },
     {
       "id": "cf5083ce-b4a7-4ac6-b656-1eaf7d3255ac",
       "title": "Projetos Pessoais",
       "time": "afternoon",
       "description": "Atualizar portfólio online\n\nDescrição: Adicionar os dois projetos mais recentes e revisar os links.\n\nEscrever rascunho do artigo para o blog\n\nDescrição: Desenvolver os tópicos principais e escrever a introdução sobre [assunto].\n\nEstudar funcionalidades do novo software\n\nDescrição: Dedicar 1 hora para explorar os tutoriais iniciais do programa.",
+      "status": "not_started"
+    },
+    {
+      "id": "2c5f9d5f-4209-400c-ae4e-2ae0fcfe7d5b",
+      "title": "",
+      "time": "",
+      "description": "",
+      "status": "not_started"
+    },
+    {
+      "id": "820722be-180f-4eb5-811e-75218f2d5fbf",
+      "title": "",
+      "time": "",
+      "description": "",
+      "status": "not_started"
+    },
+    {
+      "id": "6c0129e3-45dd-44f3-a2c2-3e457cb7bb25",
+      "title": "teste12",
+      "time": "morning",
+      "description": "teste",
       "status": "not_started"
     }
   ]
