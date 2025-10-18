@@ -174,7 +174,7 @@ export const TaskDetailsPage = () => {
           </div>
 
           {/* Botões cancelar e salvar */}
-          <div className="flex w-full justify-end gap-3 pt-4">
+          <div className="flex w-full justify-center pt-4">
             {isSubmitting ? (
               <Button
                 className="flex items-center justify-center"

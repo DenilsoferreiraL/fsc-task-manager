@@ -38,7 +38,11 @@ export const AddTaskDialog = ({ isOpen, handleClose, onSubmitSuccess }) => {
 
       const newTask = await response.json()
       onSubmitSuccess(newTask)
-      reset()
+      reset({
+        title: '',
+        time: 'morning',
+        description: '',
+      })
       handleClose()
       toast.success('Tarefa adicionada com sucesso!')
     } catch (error) {
@@ -53,7 +57,7 @@ export const AddTaskDialog = ({ isOpen, handleClose, onSubmitSuccess }) => {
       title: task.title,
       time: task.time,
       description: task.description,
-      status: task.status || 'not_started',
+      status: 'not_started',
     }
 
     return handleSubmitToServer(newTask)
@@ -93,21 +97,21 @@ export const AddTaskDialog = ({ isOpen, handleClose, onSubmitSuccess }) => {
                 id="title"
                 label="Título*"
                 placeholder="Título da tarefa"
+                errorMessage={errors?.title?.message}
                 disabled={isSubmitting}
                 {...register('title', {
                   required: 'O título é obrigatório.',
                   validate: (value) =>
                     value.trim() ? true : 'O título não pode ser vazio.',
                 })}
-                errorMessage={errors?.title?.message}
               />
 
               <TimeSelect
+                errorMessage={errors?.time?.message}
                 disabled={isSubmitting}
                 {...register('time', {
                   required: 'O horário é obrigatório.',
                 })}
-                errorMessage={errors?.time?.message}
               />
 
               <TextArea
@@ -115,12 +119,12 @@ export const AddTaskDialog = ({ isOpen, handleClose, onSubmitSuccess }) => {
                 placeholder="Descreva a tarefa"
                 label="Descrição*"
                 disabled={isSubmitting}
+                errorMessage={errors?.description?.message}
                 {...register('description', {
                   required: 'A descrição é obrigatória.',
                   validate: (value) =>
                     value.trim() ? true : 'A descrição não pode ser vazia.',
                 })}
-                errorMessage={errors?.description?.message}
               />
 
               <div className="flex gap-3">

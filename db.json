@@ -1,13 +1,6 @@
 {
   "tasks": [
     {
-      "id": "3a327305-188d-4e54-81a7-404fa2aaa0ee",
-      "title": "Trabalho & Estudos",
-      "time": "morning",
-      "description": "Revisar relatório trimestral  Descrição: Conferir dados, gráficos e formatação do relatório antes do envio para a diretoria.  Preparar apresentação para reunião de equipe  Descrição: Criar slides com os tópicos principais: resultados da semana, metas e bloqueadores.  Finalizar módulo do curso online  Descrição: Assistir às duas videoaulas restantes e completar o quiz de avaliação.",
-      "status": "not_started"
-    },
-    {
       "id": "4388cac7-5129-42b4-9179-8b6163ff48c9",
       "title": "Casa & Vida Pessoal",
       "time": "afternoon",
@@ -40,13 +33,6 @@
       "title": "teste123grdgdg",
       "time": "evening",
       "description": "teste123dgdrgd",
-      "status": "not_started"
-    },
-    {
-      "id": "b080d600-81a1-4b3c-9f57-3e984dfa9a52",
-      "title": "fgdgdgdg",
-      "time": "afternoon",
-      "description": "gdgdgd",
       "status": "not_started"
     }
   ]
