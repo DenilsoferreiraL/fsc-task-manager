@@ -25,7 +25,26 @@ export const TaskDetailsPage = () => {
     navigate(-1)
   }
 
-  // Salvar com validação
+  useEffect(() => {
+    const fetchTask = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/tasks/${taskId}`, {
+          method: 'GET',
+        })
+        const data = await response.json()
+        setTask(data)
+        reset(data)
+      } catch (error) {
+        console.error('Erro ao carregar tarefa:', error)
+        toast.error('Erro ao carregar tarefa.')
+      }
+    }
+
+    if (taskId) {
+      fetchTask()
+    }
+  }, [taskId, reset])
+
   const handleSaveClick = async (data) => {
     const response = await fetch(`http://localhost:3000/tasks/${taskId}`, {
       method: 'PATCH',
@@ -67,26 +86,6 @@ export const TaskDetailsPage = () => {
       toast.error('Erro ao deletar a tarefa. Por favor, tente novamente.')
     }
   }
-
-  useEffect(() => {
-    const fetchTask = async () => {
-      try {
-        const response = await fetch(`http://localhost:3000/tasks/${taskId}`, {
-          method: 'GET',
-        })
-        const data = await response.json()
-        setTask(data)
-        reset(data)
-      } catch (error) {
-        console.error('Erro ao carregar tarefa:', error)
-        toast.error('Erro ao carregar tarefa.')
-      }
-    }
-
-    if (taskId) {
-      fetchTask()
-    }
-  }, [taskId, reset])
 
   return (
     <div className="flex">

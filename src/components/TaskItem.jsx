@@ -1,30 +1,36 @@
+import { QueryClient, useMutation, useQueryClient } from '@tanstack/react-query'
 import PropTypes from 'prop-types'
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { toast } from 'sonner'
 
 import * as I from '../assets/icons'
 import { Button } from '../components/Button'
 
-export const TaskItem = ({
-  task,
-  handleTaskCheckboxClick,
-  onDeleteSuccess,
-}) => {
-  const [deleteIsLoading, setDeleteIsLoading] = useState(false)
+export const TaskItem = ({ task, handleTaskCheckboxClick }) => {
+  const queryClient = useQueryClient()
+
+  const { mutate, isPending } = useMutation({
+    mutationKey: ['deleteTask', task.id],
+    mutationFn: async () => {
+      const response = await fetch(`http://localhost:3000/tasks/${task.id}`, {
+        method: 'DELETE',
+      })
+      return response.json()
+    },
+  })
 
   const handleDeleteClick = async () => {
-    setDeleteIsLoading(true)
-    const response = await fetch(`http://localhost:3000/tasks/${task.id}`, {
-      method: 'DELETE',
+    mutate(undefined, {
+      onSuccess: () => {
+        queryClient.setQueryData('tasks', (oldTask) => {
+          return oldTask.filter((oldTask) => oldTask.id !== task.id)
+        })
+        toast.success('Tarefa deletada com sucesso!')
+      },
+      OnError: () => {
+        toast.error('Erro ao deletar tarefa!')
+      },
     })
-
-    if (!response.ok) {
-      setDeleteIsLoading(false)
-      return toast.error('Erro ao remover a tarefa. Tente novamente.')
-    }
-    onDeleteSuccess(task.id)
-    setDeleteIsLoading(false)
   }
 
   const getStatusClasses = () => {
@@ -79,12 +85,8 @@ export const TaskItem = ({
         {task.title}
       </div>
       <div className="flex items-center gap-2">
-        <Button
-          color="ghost"
-          onClick={handleDeleteClick}
-          disabled={deleteIsLoading}
-        >
-          {deleteIsLoading ? (
+        <Button color="ghost" onClick={handleDeleteClick} disabled={isPending}>
+          {isPending ? (
             <I.LoaderCircleIcon className="text-brand-gray animate-spin" />
           ) : (
             <I.TrashIcon className="text-brand-text-gray" />

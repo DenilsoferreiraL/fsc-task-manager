@@ -64,20 +64,6 @@ export const Tasks = () => {
     }
   }
 
-  const handleAddTaskSubmit = async (task) => {
-    queryClient.setQueryData('tasks', (currentTasks) => {
-      return [...currentTasks, task]
-    })
-    toast.success('Tarefa adicionada com sucesso!')
-  }
-
-  const onDeleteTaskSuccess = async (taskId) => {
-    queryClient.setQueryData('tasks', (currentTasks) => {
-      return currentTasks.filter((task) => task.id !== taskId)
-    })
-    toast.success('Tarefa deletada com sucesso!')
-  }
-
   return (
     <div className="w-full space-y-6 px-8 py-16">
       <div className="flex w-full justify-between">
@@ -100,7 +86,6 @@ export const Tasks = () => {
           <AddTaskDialog
             isOpen={addTaskDialogIsOpen}
             handleClose={() => setAddTaskDialogIsOpen(false)}
-            onSubmitSuccess={handleAddTaskSubmit}
           />
         </div>
       </div>
@@ -120,7 +105,6 @@ export const Tasks = () => {
               key={task.id}
               task={task}
               handleTaskCheckboxClick={handleTaskCheckboxClick}
-              onDeleteSuccess={onDeleteTaskSuccess}
             />
           ))}
         </div>
@@ -136,7 +120,6 @@ export const Tasks = () => {
               key={task.id}
               task={task}
               handleTaskCheckboxClick={handleTaskCheckboxClick}
-              onDeleteSuccess={onDeleteTaskSuccess}
             />
           ))}
         </div>
@@ -152,7 +135,6 @@ export const Tasks = () => {
               key={task.id}
               task={task}
               handleTaskCheckboxClick={handleTaskCheckboxClick}
-              onDeleteSuccess={onDeleteTaskSuccess}
             />
           ))}
         </div>

@@ -1,5 +1,6 @@
 import './AddTaskDialog.css'
 
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import PropTypes from 'prop-types'
 import { useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
@@ -14,7 +15,7 @@ import { Input } from './Input'
 import { TextArea } from './TextArea'
 import { TimeSelect } from './TimeSelect'
 
-export const AddTaskDialog = ({ isOpen, handleClose, onSubmitSuccess }) => {
+export const AddTaskDialog = ({ isOpen, handleClose }) => {
   const {
     register,
     handleSubmit,
@@ -22,45 +23,37 @@ export const AddTaskDialog = ({ isOpen, handleClose, onSubmitSuccess }) => {
     formState: { errors, isSubmitting },
   } = useForm()
 
-  const handleSubmitToServer = async (task) => {
-    try {
+  const queryClient = useQueryClient()
+  const { mutate } = useMutation({
+    mutationKey: 'addTask',
+    mutationFn: async (task) => {
       const response = await fetch('http://localhost:3000/tasks', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(task),
       })
-
-      if (!response.ok) {
-        throw new Error('Erro ao adicionar tarefa')
-      }
-
-      const newTask = await response.json()
-      onSubmitSuccess(newTask)
-      reset({
-        title: '',
-        time: 'morning',
-        description: '',
-      })
-      handleClose()
+      if (!response.ok) throw new Error('Erro ao salvar tarefa')
+      return response.json()
+    },
+    onSuccess: (task) => {
+      queryClient.setQueryData('tasks', (oldTasks = []) => [...oldTasks, task])
       toast.success('Tarefa adicionada com sucesso!')
-    } catch (error) {
-      console.error(error)
+      handleClose()
+      reset()
+    },
+    onError: () => {
       toast.error('Erro ao adicionar a tarefa. Por favor, tente novamente.')
-    }
-  }
+    },
+  })
 
-  const handleSaveClick = async (task) => {
-    const newTask = {
+  const handleSubmitToServer = (data) => {
+    mutate({
       id: v4(),
-      title: task.title,
-      time: task.time,
-      description: task.description,
+      title: data.title.trim(),
+      time: data.time,
+      description: data.description.trim(),
       status: 'not_started',
-    }
-
-    return handleSubmitToServer(newTask)
+    })
   }
 
   const nodeRef = useRef(null)
@@ -91,7 +84,7 @@ export const AddTaskDialog = ({ isOpen, handleClose, onSubmitSuccess }) => {
             Insira as informações abaixo
           </p>
 
-          <form onSubmit={handleSubmit(handleSaveClick)}>
+          <form onSubmit={handleSubmit(handleSubmitToServer)}>
             <div className="flex w-[366px] flex-col space-y-4">
               <Input
                 id="title"

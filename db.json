@@ -27,13 +27,6 @@
       "time": "afternoon",
       "description": "Atualizar portfólio online\n\nDescrição: Adicionar os dois projetos mais recentes e revisar os links.\n\nEscrever rascunho do artigo para o blog\n\nDescrição: Desenvolver os tópicos principais e escrever a introdução sobre [assunto].\n\nEstudar funcionalidades do novo software\n\nDescrição: Dedicar 1 hora para explorar os tutoriais iniciais do programa.",
       "status": "in_progress"
-    },
-    {
-      "id": "b2e9f2c0-afcf-4cf5-a91e-33c64d0c4bfc",
-      "title": "teste",
-      "time": "morning",
-      "description": "teste",
-      "status": "in_progress"
     }
   ]
 }
