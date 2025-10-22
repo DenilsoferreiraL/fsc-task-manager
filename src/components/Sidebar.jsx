@@ -1,8 +1,12 @@
-import HomeIcon from '../assets/icons/home.svg?react'
-import TasksIcon from '../assets/icons/tasks.svg?react'
+import { useLocation } from 'react-router-dom'
+
+import * as I from '../assets/icons'
 import { SidebarButton } from './SidebarButton'
 
 export const Sidebar = () => {
+  const location = useLocation()
+  const isOnTaskDetail = location.pathname.startsWith('/task/')
+
   return (
     <div className="h-screen w-72 min-w-72 bg-white">
       <div className="space-y-4 px-8 py-6">
@@ -19,14 +23,22 @@ export const Sidebar = () => {
 
       <div>
         <div className="flex flex-col gap-2 p-2">
-          <SidebarButton to={'/'}>
-            <HomeIcon />
+          <SidebarButton to="/" disabled={isOnTaskDetail}>
+            <I.HomeIcon />
             Início
           </SidebarButton>
-          <SidebarButton to={'/tasks'}>
-            <TasksIcon />
+
+          <SidebarButton to="/tasks" disabled={isOnTaskDetail}>
+            <I.TasksIcon />
             Minhas tarefas
           </SidebarButton>
+
+          {isOnTaskDetail && (
+            <SidebarButton to={location.pathname}>
+              <I.EditIcon />
+              Detalhes da tarefa
+            </SidebarButton>
+          )}
         </div>
       </div>
     </div>
