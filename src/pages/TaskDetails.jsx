@@ -12,7 +12,7 @@ import { useDeleteTask } from '../hooks/data/use-delete-task'
 import { useGetTasks } from '../hooks/data/use-get-tasks'
 import { useUpdatedTask } from '../hooks/data/use-updated-task'
 
-export const TaskDetails = () => {
+export const TaskDetailsPage = () => {
   const { taskId } = useParams()
   const navigate = useNavigate()
 
