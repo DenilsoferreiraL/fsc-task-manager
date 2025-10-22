@@ -1,21 +1,19 @@
 import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
 import { toast } from 'sonner'
 
+import { api } from '../../lib/axios'
+
 export const useGetTasks = (taskId) => {
+  // Define a query key de acordo com a necessidade
   const queryKey = taskId ? ['task', taskId] : ['tasks']
-  const url = taskId
-    ? `http://localhost:3000/tasks/${taskId}`
-    : 'http://localhost:3000/tasks'
 
   return useQuery({
     queryKey,
     queryFn: async () => {
-      const { data: getTask } = await axios.get(url, taskId)
-
-      return getTask
+      const url = taskId ? `/tasks/${taskId}` : '/tasks'
+      const { data } = await api.get(url)
+      return data
     },
-    enabled: !!url,
     onError: () => toast.error('Erro ao carregar tarefa(s)'),
   })
 }

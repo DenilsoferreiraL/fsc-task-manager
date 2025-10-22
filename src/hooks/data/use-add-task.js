@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import axios from 'axios'
 import { toast } from 'sonner'
+
+import { api } from '../../lib/axios'
 
 export const useAddTask = (handleClose, reset) => {
   const queryClient = useQueryClient()
@@ -8,10 +9,7 @@ export const useAddTask = (handleClose, reset) => {
   return useMutation({
     mutationKey: ['tasks', 'add'],
     mutationFn: async (task) => {
-      const { data: createdTask } = await axios.post(
-        'http://localhost:3000/tasks',
-        task
-      )
+      const { data: createdTask } = await api.post('/tasks', task)
       return createdTask
     },
     onSuccess: (newTask) => {
