@@ -5,7 +5,7 @@
       "title": "Casa & Vida Pessoal",
       "time": "afternoon",
       "description": "Fazer compras do mês  Descrição: Listar itens de higiene, limpeza e alimentos para o supermercado.  Limpar e organizar o armário  Descrição: Separar roupas para doação e reorganizar o espaço por estação.  Agendar consulta médica  Descrição: Ligar para o clínico geral para fazer o check-up anual.",
-      "status": "in_progress"
+      "status": "not_started"
     },
     {
       "id": "e4d99a66-dfe5-48a2-95ca-6366424624f3",
@@ -19,27 +19,13 @@
       "title": "Saúde & Bem-Estar",
       "time": "morning",
       "description": "Planejar refeições da semana\n\nDescrição: Definir o cardápio de almoço e jantar para facilitar a rotina.\n\nFazer 30 minutos de exercício\n\nDescrição: Pode ser uma caminhada, yoga ou treino em casa.\n\nMeditar antes de dormir\n\nDescrição: Praticar 10 minutos de meditação guiada para melhorar a qualidade do sono.",
-      "status": "done"
+      "status": "not_started"
     },
     {
       "id": "cf5083ce-b4a7-4ac6-b656-1eaf7d3255ac",
       "title": "Projetos Pessoais",
       "time": "afternoon",
       "description": "Atualizar portfólio online\n\nDescrição: Adicionar os dois projetos mais recentes e revisar os links.\n\nEscrever rascunho do artigo para o blog\n\nDescrição: Desenvolver os tópicos principais e escrever a introdução sobre [assunto].\n\nEstudar funcionalidades do novo software\n\nDescrição: Dedicar 1 hora para explorar os tutoriais iniciais do programa.",
-      "status": "in_progress"
-    },
-    {
-      "id": "14d99068-223c-4dce-8e33-587a8033fb36",
-      "title": "teste1",
-      "time": "morning",
-      "description": "teste",
-      "status": "not_started"
-    },
-    {
-      "id": "71a06f0c-e138-450f-b635-aea77c988b02",
-      "title": "teste1",
-      "time": "morning",
-      "description": "teste",
       "status": "not_started"
     }
   ]

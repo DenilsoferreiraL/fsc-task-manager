@@ -1,15 +1,14 @@
 import './AddTaskDialog.css'
 
-import { useMutation, useQueryClient } from '@tanstack/react-query'
 import PropTypes from 'prop-types'
 import { useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { useForm } from 'react-hook-form'
 import { CSSTransition } from 'react-transition-group'
-import { toast } from 'sonner'
 import { v4 } from 'uuid'
 
 import * as I from '../assets/icons'
+import { useAddTask } from '../hooks/data/use-add-task'
 import { Button } from './Button'
 import { Input } from './Input'
 import { TextArea } from './TextArea'
@@ -23,28 +22,7 @@ export const AddTaskDialog = ({ isOpen, handleClose }) => {
     formState: { errors, isSubmitting },
   } = useForm()
 
-  const queryClient = useQueryClient()
-  const { mutate } = useMutation({
-    mutationKey: 'addTask',
-    mutationFn: async (task) => {
-      const response = await fetch('http://localhost:3000/tasks', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(task),
-      })
-      if (!response.ok) throw new Error('Erro ao salvar tarefa')
-      return response.json()
-    },
-    onSuccess: (task) => {
-      queryClient.setQueryData('tasks', (oldTasks = []) => [...oldTasks, task])
-      toast.success('Tarefa adicionada com sucesso!')
-      handleClose()
-      reset()
-    },
-    onError: () => {
-      toast.error('Erro ao adicionar a tarefa. Por favor, tente novamente.')
-    },
-  })
+  const { mutate } = useAddTask(handleClose, reset)
 
   const handleSubmitToServer = (data) => {
     mutate({
