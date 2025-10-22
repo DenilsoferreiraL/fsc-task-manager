@@ -1,11 +1,14 @@
 import { useQuery } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
+import { taskQueryKeys } from '../../Keys/queries'
 import { api } from '../../lib/axios'
 
 export const useGetTasks = (taskId) => {
   // Define a query key de acordo com a necessidade
-  const queryKey = taskId ? ['task', taskId] : ['tasks']
+  const queryKey = taskId
+    ? taskQueryKeys.getOne(taskId)
+    : taskQueryKeys.getAll()
 
   return useQuery({
     queryKey,

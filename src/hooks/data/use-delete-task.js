@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 
+import { taskQueryKeys } from '../../Keys/queries'
 import { api } from '../../lib/axios'
 
 export const useDeleteTask = (taskId) => {
@@ -17,7 +18,7 @@ export const useDeleteTask = (taskId) => {
     },
     onSuccess: (deletedTask) => {
       // Atualiza cache local removendo a task pelo id
-      queryClient.setQueryData(['tasks'], (oldTasks = []) =>
+      queryClient.setQueryData(taskQueryKeys.getAll(), (oldTasks = []) =>
         oldTasks.filter((task) => task.id !== deletedTask.id)
       )
 

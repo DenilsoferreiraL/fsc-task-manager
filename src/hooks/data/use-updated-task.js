@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
+import { taskQueryKeys } from '../../Keys/queries'
 import { api } from '../../lib/axios'
 
 export const useUpdatedTask = (taskId, onSuccessNavigate) => {
@@ -24,10 +25,10 @@ export const useUpdatedTask = (taskId, onSuccessNavigate) => {
     },
     onSuccess: (data) => {
       // Atualiza o cache da task específica
-      queryClient.setQueryData(['task', taskId], data)
+      queryClient.setQueryData([taskQueryKeys.getAll(), taskId], data)
 
       // Atualiza a lista de tasks se estiver no cache
-      queryClient.setQueryData(['tasks'], (old = []) =>
+      queryClient.setQueryData(taskQueryKeys.getOne(), (old = []) =>
         old.map((t) => (t.id === taskId ? data : t))
       )
 
