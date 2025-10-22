@@ -7,7 +7,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Toaster } from 'sonner'
 
 import App from './App'
-import { TaskDetailsPage } from './pages/taskDetails'
+import { TaskDetails } from './pages/taskDetails'
 
 const queryClient = new QueryClient()
 
@@ -18,7 +18,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/task/:taskId',
-    element: <TaskDetailsPage />,
+    element: <TaskDetails />,
   },
 ])
 
