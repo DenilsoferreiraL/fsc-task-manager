@@ -36,7 +36,7 @@ export const TaskItem = ({ task, handleTaskCheckboxClick }) => {
 
   const getCheckboxClasses = () => {
     if (task.status === 'done') {
-      return 'bg-brand-primary opacity-100'
+      return 'bg-brand-success opacity-100'
     }
 
     if (task.status === 'in_progress') {

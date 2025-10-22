@@ -49,7 +49,7 @@ export const TaskDetailsPage = () => {
   }
 
   return (
-    <div className="flex">
+    <div className="flex bg-brand-secondary">
       <Sidebar />
       <div className="w-full px-8 py-16">
         {/* Botão voltar */}
@@ -64,7 +64,7 @@ export const TaskDetailsPage = () => {
         <div className="flex items-center gap-2">
           <span
             onClick={handleBackClick}
-            className="cursor-pointer text-sm text-brand-text-gray hover:opacity-70"
+            className="cursor-pointer text-sm text-brand-dark-gray hover:opacity-70"
           >
             Minhas tarefas
           </span>
