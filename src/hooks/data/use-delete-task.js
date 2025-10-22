@@ -22,7 +22,7 @@ export const useDeleteTask = (taskId) => {
       )
 
       toast.success('Tarefa deletada com sucesso!')
-      navigate('/')
+      navigate('/tasks')
     },
     onError: () => {
       toast.error('Erro ao deletar a tarefa. Por favor, tente novamente.')

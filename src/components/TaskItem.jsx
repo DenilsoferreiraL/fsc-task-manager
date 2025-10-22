@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { toast } from 'sonner'
 
 import * as I from '../assets/icons'
@@ -79,7 +79,7 @@ export const TaskItem = ({ task, handleTaskCheckboxClick }) => {
             <I.TrashIcon className="text-brand-text-gray" />
           )}
         </Button>
-        <Link to={`task/${task.id}`} className="transition hover:opacity-75">
+        <Link to={`/task/${task.id}`} className="transition hover:opacity-75">
           <I.DetailIcon />
         </Link>
       </div>
