@@ -6,7 +6,7 @@ import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Toaster } from 'sonner'
 
-import { Home } from './pages/Home'
+import Home from './pages/Home'
 import { TaskDetailsPage } from './pages/taskDetails'
 import TasksPage from './pages/tasks'
 

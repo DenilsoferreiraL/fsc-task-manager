@@ -1,12 +1,13 @@
+import { Dashboard } from '../components/Dashboard'
 import { Sidebar } from '../components/Sidebar'
 
-export const Home = () => {
+function Home() {
   return (
     <div className="flex">
       <Sidebar />
-      <div>
-        <h1>ola</h1>
-      </div>
+      <Dashboard />
     </div>
   )
 }
+
+export default Home
