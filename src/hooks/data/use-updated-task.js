@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import axios from 'axios'
 import { toast } from 'sonner'
 
 export const useUpdatedTask = (taskId, onSuccessNavigate) => {
@@ -6,17 +7,19 @@ export const useUpdatedTask = (taskId, onSuccessNavigate) => {
 
   return useMutation({
     mutationFn: async (formData) => {
-      const response = await fetch(`http://localhost:3000/tasks/${taskId}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+      const { data: updatedTask } = await axios.patch(
+        `http://localhost:3000/tasks/${taskId}`,
+        {
           title: formData.title.trim(),
           time: formData.time,
           description: formData.description.trim(),
-        }),
-      })
-      if (!response.ok) throw new Error('Erro ao salvar tarefa')
-      return response.json()
+        },
+        {
+          headers: { 'Content-Type': 'application/json' },
+        }
+      )
+
+      return updatedTask
     },
     onSuccess: (data) => {
       // Atualiza o cache da task específica

@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import axios from 'axios'
 import { toast } from 'sonner'
 
 export const useAddTask = (handleClose, reset) => {
@@ -7,25 +8,21 @@ export const useAddTask = (handleClose, reset) => {
   return useMutation({
     mutationKey: ['tasks', 'add'],
     mutationFn: async (task) => {
-      const response = await fetch('http://localhost:3000/tasks', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(task),
-      })
-
-      if (!response.ok) throw new Error('Erro ao salvar tarefa')
-      return response.json()
+      const { data: createdTask } = await axios.post(
+        'http://localhost:3000/tasks',
+        task
+      )
+      return createdTask
     },
     onSuccess: (newTask) => {
-      // Atualiza o cache da lista de tarefas de forma instantânea
       queryClient.setQueryData(['tasks'], (oldTasks = []) => [
         ...oldTasks,
         newTask,
       ])
 
       toast.success('Tarefa adicionada com sucesso!')
-      handleClose() // Fecha modal
-      reset() // Limpa formulário
+      handleClose()
+      reset()
     },
     onError: () => {
       toast.error('Erro ao adicionar a tarefa. Por favor, tente novamente.')

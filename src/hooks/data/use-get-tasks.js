@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
 import { toast } from 'sonner'
 
 export const useGetTasks = (taskId) => {
@@ -10,9 +11,9 @@ export const useGetTasks = (taskId) => {
   return useQuery({
     queryKey,
     queryFn: async () => {
-      const response = await fetch(url)
-      if (!response.ok) throw new Error('Erro ao carregar tarefa(s)')
-      return response.json()
+      const { data: getTask } = await axios.get(url, taskId)
+
+      return getTask
     },
     enabled: !!url,
     onError: () => toast.error('Erro ao carregar tarefa(s)'),
