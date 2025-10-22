@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 
+import { taskMutationKeys } from '../../Keys/mutations'
 import { taskQueryKeys } from '../../Keys/queries'
 import { api } from '../../lib/axios'
 
@@ -10,7 +11,7 @@ export const useDeleteTask = (taskId) => {
   const navigate = useNavigate()
 
   return useMutation({
-    mutationKey: ['deleteTask', taskId],
+    mutationKey: taskMutationKeys.delete(taskId),
     mutationFn: async () => {
       const { data: deleteTask } = await api.delete(`/tasks/${taskId}`, taskId)
 
