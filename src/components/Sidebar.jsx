@@ -29,7 +29,7 @@ export const Sidebar = () => {
           </SidebarButton>
 
           <SidebarButton to="/tasks" disabled={isOnTaskDetail}>
-            <I.ChechTasksIcon />
+            <I.CheckTasksIcon />
             Minhas tarefas
           </SidebarButton>
 
