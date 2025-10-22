@@ -1,8 +1,6 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
-import { toast } from 'sonner'
 
 import * as I from '../assets/icons'
 import { Button } from '../components/Button'
@@ -10,11 +8,13 @@ import { Input } from '../components/Input'
 import { Sidebar } from '../components/Sidebar'
 import { TextArea } from '../components/TextArea'
 import { TimeSelect } from '../components/TimeSelect'
+import { useDeleteTask } from '../hooks/data/use-delete-task'
+import { useGetTasks } from '../hooks/data/use-get-tasks'
+import { useUpdatedTask } from '../hooks/data/use-updated-task'
 
 export const TaskDetails = () => {
   const { taskId } = useParams()
   const navigate = useNavigate()
-  const queryClient = useQueryClient()
 
   const {
     register,
@@ -24,73 +24,17 @@ export const TaskDetails = () => {
   } = useForm()
 
   //Lista as tarefas
-  const { data: task, isLoading } = useQuery({
-    queryKey: ['task', taskId],
-    queryFn: async () => {
-      const response = await fetch(`http://localhost:3000/tasks/${taskId}`)
-      if (!response.ok) throw new Error('Erro ao carregar tarefa')
-      return response.json()
-    },
-    enabled: !!taskId,
-    onError: () => {
-      toast.error('Erro ao carregar tarefa.')
-    },
-  })
+  const { data: task, isLoading } = useGetTasks(taskId)
 
   useEffect(() => {
     if (task) reset(task)
   }, [task, reset])
 
   //Atualiza as tarefas
-  const updateTask = useMutation({
-    mutationFn: async (formData) => {
-      const response = await fetch(`http://localhost:3000/tasks/${taskId}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          title: formData.title.trim(),
-          time: formData.time,
-          description: formData.description.trim(),
-        }),
-      })
-      if (!response.ok) throw new Error('Erro ao salvar tarefa')
-      return response.json()
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries('task', (oldTasks) => {
-        return oldTasks.map((oldTasks) => {
-          if (oldTasks.id === taskId) {
-            return updateTask
-          }
-          return oldTasks
-        })
-      })
-      toast.success('Tarefa salva com sucesso!')
-      navigate(-1)
-    },
-    onError: () => {
-      toast.error('Ocorreu um erro ao salvar a tarefa.')
-    },
-  })
+  const updateTask = useUpdatedTask(taskId, () => navigate(-1))
 
   //Deleta as tarefas
-  const deleteTask = useMutation({
-    mutationFn: async () => {
-      const response = await fetch(`http://localhost:3000/tasks/${taskId}`, {
-        method: 'DELETE',
-      })
-      if (!response.ok) throw new Error('Erro ao deletar tarefa')
-      return response.json()
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries(['tasks'])
-      toast.success('Tarefa deletada com sucesso!')
-      navigate('/')
-    },
-    onError: () => {
-      toast.error('Erro ao deletar a tarefa. Por favor, tente novamente.')
-    },
-  })
+  const deleteTask = useDeleteTask(taskId)
 
   const handleBackClick = () => navigate(-1)
   const handleSaveClick = (data) => updateTask.mutate(data)

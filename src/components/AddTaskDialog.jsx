@@ -21,8 +21,8 @@ export const AddTaskDialog = ({ isOpen, handleClose }) => {
     reset,
     formState: { errors, isSubmitting },
   } = useForm()
-
   const { mutate } = useAddTask(handleClose, reset)
+  const nodeRef = useRef(null)
 
   const handleSubmitToServer = (data) => {
     mutate({
@@ -34,12 +34,8 @@ export const AddTaskDialog = ({ isOpen, handleClose }) => {
     })
   }
 
-  const nodeRef = useRef(null)
-
   useEffect(() => {
-    if (!isOpen) {
-      reset()
-    }
+    if (!isOpen) reset()
   }, [isOpen, reset])
 
   return createPortal(
@@ -68,8 +64,8 @@ export const AddTaskDialog = ({ isOpen, handleClose }) => {
                 id="title"
                 label="Título*"
                 placeholder="Título da tarefa"
-                errorMessage={errors?.title?.message}
                 disabled={isSubmitting}
+                errorMessage={errors?.title?.message}
                 {...register('title', {
                   required: 'O título é obrigatório.',
                   validate: (value) =>
@@ -78,11 +74,9 @@ export const AddTaskDialog = ({ isOpen, handleClose }) => {
               />
 
               <TimeSelect
-                errorMessage={errors?.time?.message}
                 disabled={isSubmitting}
-                {...register('time', {
-                  required: 'O horário é obrigatório.',
-                })}
+                errorMessage={errors?.time?.message}
+                {...register('time', { required: 'O horário é obrigatório.' })}
               />
 
               <TextArea
@@ -101,27 +95,27 @@ export const AddTaskDialog = ({ isOpen, handleClose }) => {
               <div className="flex gap-3">
                 <Button
                   type="button"
-                  className="w-full bg-brand-light-gray"
                   size="large"
-                  onClick={handleClose}
                   color="ghost"
+                  className="w-full bg-brand-light-gray"
+                  onClick={handleClose}
                   disabled={isSubmitting}
                 >
                   Cancelar
                 </Button>
 
                 <Button
-                  className="w-full"
-                  color="primary"
-                  size="large"
                   type="submit"
+                  size="large"
+                  color="primary"
+                  className="w-full"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (
                     <div className="flex items-center justify-center">
                       <I.LoaderCircleIcon
-                        color="disabled"
                         className="mr-2 animate-spin"
+                        color="disabled"
                       />
                       Salvando...
                     </div>
@@ -142,5 +136,4 @@ export const AddTaskDialog = ({ isOpen, handleClose }) => {
 AddTaskDialog.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
-  onSubmitSuccess: PropTypes.func.isRequired,
 }
