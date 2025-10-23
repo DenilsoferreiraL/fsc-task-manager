@@ -1,8 +1,9 @@
+// src/hooks/useTasksLogic.js
 import { useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
-import { taskQueryKeys } from '../Keys/queries'
-import { useGetTasks } from './data/use-get-tasks'
+import { taskQueryKeys } from '../../Keys/queries'
+import { useGetTasks } from './use-get-tasks'
 
 export const useTasksLogic = () => {
   const queryClient = useQueryClient()
@@ -35,8 +36,7 @@ export const useTasksLogic = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: updatedTask.status }),
       })
-
-      if (!response.ok) throw new Error('Erro ao atualizar tarefa no servidor')
+      if (!response.ok) throw new Error('Erro ao atualizar no servidor')
     } catch (error) {
       console.error(error)
       toast.error('Erro ao atualizar o status da tarefa!')
