@@ -11,7 +11,7 @@ export const DashboardCards = () => {
     tasks?.filter((task) => task.status === 'done').length || 0
   const totalTasks = tasks?.length || 0
   return (
-    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 lg:grid-cols-3">
       <DashboardCard
         icon={<I.LayoutListIcon />}
         mainText={totalTasks}
@@ -27,11 +27,11 @@ export const DashboardCards = () => {
         mainText={inProgressTasks}
         secondaryText="Tarefas em andamento"
       />
-      <DashboardCard
+      {/* <DashboardCard
         icon={<I.GlassWaterIcon />}
         mainText="40%"
         secondaryText="Água"
-      />
+      /> */}
     </div>
   )
 }
