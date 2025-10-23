@@ -2,7 +2,6 @@ import { useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
 import * as I from '../assets/icons'
-import { Header } from '../components/Header'
 import { useGetTasks } from '../hooks/data/use-get-tasks'
 import { taskQueryKeys } from '../Keys/queries'
 import { TaskItem } from './TaskItem'
@@ -55,11 +54,9 @@ export const Tasks = () => {
   }
 
   return (
-    <div className="w-full space-y-6 bg-brand-secondary px-8 py-16">
-      <Header subtitle={'Minhas Tarefas'} title={'Minhas Tarefas'} />
+    <div className="w-full space-y-6 bg-brand-secondary">
       {/* List task */}
-
-      <div className="rounded-xl bg-brand-background p-6">
+      <div className="rounded-lg bg-brand-white p-6">
         <div className="space-y-3">
           <TasksSeparator title={'Manhã'} icon={<I.SunIcon />} />
           {morningTasks?.length === 0 && (

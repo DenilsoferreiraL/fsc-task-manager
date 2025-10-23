@@ -13,22 +13,22 @@ export const DashboardCards = () => {
   return (
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
       <DashboardCard
-        icon={<I.LayoutListIcon className="text-brand-primary" />}
+        icon={<I.LayoutListIcon />}
         mainText={totalTasks}
         secondaryText="Tarefas disponíveis"
       />
       <DashboardCard
-        icon={<I.CheckTasksIcon className="text-brand-primary" />}
+        icon={<I.CheckTasksIcon />}
         mainText={completedTasks}
         secondaryText="Tarefas concluídas"
       />
       <DashboardCard
-        icon={<I.LoaderIcon className="text-brand-primary" />}
+        icon={<I.LoaderIcon />}
         mainText={inProgressTasks}
         secondaryText="Tarefas em andamento"
       />
       <DashboardCard
-        icon={<I.GlassWaterIcon className="text-brand-primary" />}
+        icon={<I.GlassWaterIcon />}
         mainText="40%"
         secondaryText="Água"
       />

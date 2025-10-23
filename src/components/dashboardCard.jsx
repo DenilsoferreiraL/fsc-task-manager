@@ -5,7 +5,7 @@ export const DashboardCard = ({ icon, mainText, secondaryText }) => {
         <span className="text-brand-primary">{icon}</span>
         <p className="text-semibold text-3xl">{mainText}</p>
       </div>
-      <p className="text-sm">{secondaryText}</p>
+      <p className="text-sm text-brand-dark-gray">{secondaryText}</p>
     </div>
   )
 }
