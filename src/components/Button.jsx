@@ -9,12 +9,12 @@ export const Button = ({
   ...rest
 }) => {
   const button = tv({
-    base: `flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-semibold transition hover:opacity-70`,
+    base: `flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-semibold shadow-md transition hover:opacity-70`,
     variants: {
       color: {
         primary: 'bg-brand-primary text-brand-white',
         secondary: 'bg-brand-light-gray text-brand-dark-blue',
-        ghost: 'bg-transparent text-brand-dark-gray',
+        ghost: 'bg-brand-white text-brand-dark-gray',
         danger: 'bg-brand-danger text-brand-white',
       },
       size: {

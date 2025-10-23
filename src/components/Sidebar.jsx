@@ -8,16 +8,17 @@ export const Sidebar = () => {
   const isOnTaskDetail = location.pathname.startsWith('/task/')
 
   return (
-    <div className="min-w-70 w-70 h-screen bg-white">
+    <div className="h-screen w-72 min-w-72 bg-white">
       <div className="space-y-4 px-8 py-6">
         <h1 className="text-xl font-semibold text-brand-primary">
           Task Manager
         </h1>
         <p className="text-sm">
-          Um simples{' '}
+          Seu{' '}
           <span className="text-sm font-semibold text-brand-primary">
             organizador de tarefas
-          </span>
+          </span>{' '}
+          rápido e inteligente.
         </p>
       </div>
 

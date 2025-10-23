@@ -19,7 +19,7 @@
 .scrollbar-basic {
     scrollbar-width: thin;
 
-    scrollbar-color: #c4a2ff transparent;
+    scrollbar-color: #d3baff transparent;
 
 }
 
@@ -28,17 +28,18 @@
 }
 
 .scrollbar-basic::-webkit-scrollbar-track {
-    background: transparent;
+    background: #F4F5F5;
+    border-radius: 9999px;
 }
 
 .scrollbar-basic::-webkit-scrollbar-thumb {
-    background-color: #c4a2ff;
+    background-color: #d3baff;
 
     border-radius: 9999px;
 
 }
 
 .scrollbar-basic::-webkit-scrollbar-thumb:hover {
-    background-color: #6b7280;
+    background-color: #d3baff;
 
 }

@@ -50,7 +50,7 @@ export const TaskItem = ({ task, handleTaskCheckboxClick }) => {
 
   return (
     <div
-      className={`flex items-center justify-between gap-2 rounded-lg px-4 py-3 text-sm transition ${getStatusClasses()}`}
+      className={`flex items-center justify-between gap-2 rounded-lg px-4 py-3 text-sm shadow-md transition ${getStatusClasses()}`}
     >
       <div className="flex items-center gap-2">
         <label
@@ -76,10 +76,13 @@ export const TaskItem = ({ task, handleTaskCheckboxClick }) => {
           {isPending ? (
             <I.LoaderCircleIcon className="text-brand-gray animate-spin" />
           ) : (
-            <I.TrashIcon className="text-brand-text-gray" />
+            <I.TrashIcon className="text-brand-danger" />
           )}
         </Button>
-        <Link to={`/task/${task.id}`} className="transition hover:opacity-75">
+        <Link
+          to={`/task/${task.id}`}
+          className="rounded-lg bg-brand-white px-3 py-1 text-brand-primary shadow-md transition hover:opacity-75"
+        >
           <I.DetailIcon />
         </Link>
       </div>

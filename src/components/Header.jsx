@@ -18,10 +18,6 @@ export const Header = ({ subtitle, title }) => {
       </div>
 
       <div className="flex items-center gap-3">
-        <Button color="ghost">
-          Limpar tarefas
-          <I.TrashIcon />
-        </Button>
         <Button onClick={() => setAddTaskDialogIsOpen(true)}>
           Nova tarefa
           <I.AddIcon />

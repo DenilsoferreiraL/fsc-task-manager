@@ -8,7 +8,7 @@ export const SidebarButton = ({ children, to, disabled }) => {
     variants: {
       color: {
         unselected: 'text-brand-dark-blue hover:bg-brand-primary/10',
-        selected: 'bg-brand-primary/15 text-brand-primary',
+        selected: 'bg-brand-primary/15 text-brand-primary shadow-md',
         disabled: 'cursor-not-allowed opacity-50',
       },
     },

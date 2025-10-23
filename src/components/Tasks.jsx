@@ -11,7 +11,7 @@ export const Tasks = () => {
   const eveningTasks = tasks?.filter((task) => task.time === 'evening')
 
   return (
-    <div className="w-full space-y-6 bg-brand-secondary">
+    <div className="scrollbar-basic max-h-[768px] w-full space-y-6 overflow-y-auto bg-brand-secondary shadow-md">
       <div className="rounded-lg bg-brand-white p-6">
         <div className="space-y-3">
           <TasksSeparator title="Manhã" icon={<I.SunIcon />} />
