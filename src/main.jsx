@@ -6,16 +6,16 @@ import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Toaster } from 'sonner'
 
-import Home from './pages/Home'
+import { HomePage } from './pages/HomePage'
 import { TaskDetailsPage } from './pages/TaskDetailsPage'
-import TasksPage from './pages/tasks'
+import { TasksPage } from './pages/TasksPage'
 
 const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
+    element: <HomePage />,
   },
   {
     path: '/tasks',

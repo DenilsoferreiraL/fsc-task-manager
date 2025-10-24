@@ -2,7 +2,7 @@ import { Header } from '../components/Header'
 import { Sidebar } from '../components/Sidebar'
 import { Tasks } from '../components/Tasks'
 
-function TasksPage() {
+export const TasksPage = () => {
   return (
     <div className="flex">
       <Sidebar />
@@ -18,5 +18,3 @@ function TasksPage() {
     </div>
   )
 }
-
-export default TasksPage
