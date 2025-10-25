@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form'
 import { CSSTransition } from 'react-transition-group'
 import { v4 } from 'uuid'
 
-import * as I from '../assets/icons'
+import { LoaderCircleIcon } from '../assets/icons'
 import { useAddTask } from '../hooks/data/use-add-task'
 import { Button } from './Button'
 import { Input } from './Input'
@@ -113,10 +113,12 @@ export const AddTaskDialog = ({ isOpen, handleClose }) => {
                 >
                   {isSubmitting ? (
                     <div className="flex items-center justify-center">
-                      <I.LoaderCircleIcon
+                      <img
+                        src={LoaderCircleIcon}
+                        alt="Adicionar"
                         className="mr-2 animate-spin"
                         color="disabled"
-                      />
+                      />{' '}
                       Salvando...
                     </div>
                   ) : (
