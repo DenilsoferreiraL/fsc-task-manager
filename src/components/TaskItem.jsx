@@ -7,7 +7,7 @@ import {
   DetailIcon,
   LoaderCircleIcon,
   TrashIcon,
-} from '../assets/icons/index'
+} from '../assets/icons'
 import { Button } from '../components/Button'
 import { useDeleteTask } from '../hooks/data/use-delete-task'
 

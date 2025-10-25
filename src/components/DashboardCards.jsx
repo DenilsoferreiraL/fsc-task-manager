@@ -1,8 +1,4 @@
-import {
-  CheckTasksIcon,
-  LayoutListIcon,
-  LoaderIcon,
-} from '../assets/icons/index'
+import { CheckTasksIcon, LayoutListIcon, LoaderIcon } from '../assets/icons'
 import { useGetTasks } from '../hooks/data/use-get-tasks'
 import { DashboardCard } from './dashboardCard'
 

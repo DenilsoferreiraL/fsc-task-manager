@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom'
 
-import { CheckTasksIcon, EditIcon, HomeIcon } from '../assets/icons/index'
+import { CheckTasksIcon, EditIcon, HomeIcon } from '../assets/icons'
 import { SidebarButton } from './SidebarButton'
 
 export const Sidebar = () => {

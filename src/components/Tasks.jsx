@@ -1,4 +1,4 @@
-import { CloudSunIcon, NightIcon, SunIcon } from '../assets/icons/index'
+import { CloudSunIcon, NightIcon, SunIcon } from '../assets/icons'
 import { useTasksLogic } from '../hooks/data/use-tasks-logic'
 import { TaskItem } from './TaskItem'
 import { TasksSeparator } from './TasksSeparator'

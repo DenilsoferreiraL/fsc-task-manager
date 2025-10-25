@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 
-import { AddIcon } from '../assets/icons/index'
+import { AddIcon } from '../assets/icons'
 import { AddTaskDialog } from './AddTaskDialog'
 import { Button } from './Button'
 
