@@ -1,13 +1,8 @@
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { toast } from 'sonner'
 
-import {
-  AddIcon,
-  DetailIcon,
-  LoaderCircleIcon,
-  TrashIcon,
-} from '../assets/icons'
+import * as I from '../assets/icons'
 import { Button } from '../components/Button'
 import { useDeleteTask } from '../hooks/data/use-delete-task'
 
@@ -68,15 +63,9 @@ export const TaskItem = ({ task, handleTaskCheckboxClick }) => {
             className="absolute h-full w-full cursor-pointer opacity-0"
             onChange={() => handleTaskCheckboxClick(task.id)}
           />
-          {task.status === 'done' && (
-            <img src={AddIcon} alt="Adicionar" className="animate-pulse" />
-          )}
+          {task.status === 'done' && <I.CheckIcon className="animate-pulse" />}
           {task.status === 'in_progress' && (
-            <img
-              src={LoaderCircleIcon}
-              alt="Adicionar"
-              className="animate-spin text-brand-white"
-            />
+            <I.LoaderCircleIcon className="animate-spin text-brand-white" />
           )}
         </label>
 
@@ -85,24 +74,16 @@ export const TaskItem = ({ task, handleTaskCheckboxClick }) => {
       <div className="flex items-center gap-2">
         <Button color="ghost" onClick={handleDeleteClick} disabled={isPending}>
           {isPending ? (
-            <img
-              src={LoaderCircleIcon}
-              alt="Adicionar"
-              className="text-brand-gray animate-spin"
-            />
+            <I.LoaderCircleIcon className="text-brand-gray animate-spin" />
           ) : (
-            <img
-              src={TrashIcon}
-              alt="Adicionar"
-              className="text-brand-danger"
-            />
+            <I.TrashIcon className="text-brand-danger" />
           )}
         </Button>
         <Link
           to={`/task/${task.id}`}
           className="rounded-lg bg-brand-white px-3 py-1 text-brand-primary shadow-md transition hover:opacity-75"
         >
-          <img src={DetailIcon} alt="Adicionar" />
+          <I.DetailIcon />
         </Link>
       </div>
     </div>

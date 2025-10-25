@@ -2,12 +2,7 @@ import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import {
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  LoaderCircleIcon,
-  TrashIcon,
-} from '../assets/icons'
+import * as I from '../assets/icons'
 import { Button } from '../components/Button'
 import { Input } from '../components/Input'
 import { Sidebar } from '../components/Sidebar'
@@ -62,7 +57,7 @@ export const TaskDetailsPage = () => {
           onClick={handleBackClick}
           className="mb-3 flex h-8 w-8 items-center justify-center rounded-full bg-brand-primary transition hover:opacity-70"
         >
-          <img src={ArrowLeftIcon} alt="Adicionar" />
+          <I.ArrowLeftIcon />
         </button>
 
         {/* Breadcrumb */}
@@ -73,7 +68,7 @@ export const TaskDetailsPage = () => {
           >
             Minhas tarefas
           </span>
-          <img src={ArrowRightIcon} alt="Adicionar" />
+          <I.ArrowRightIcon />
           <span className="text-sm font-semibold text-brand-primary">
             {task?.title}
           </span>
@@ -90,16 +85,12 @@ export const TaskDetailsPage = () => {
           >
             {deleteTask.isPending ? (
               <>
-                <img
-                  src={LoaderCircleIcon}
-                  alt="Adicionar"
-                  className="mr-2 animate-spin"
-                />
+                <I.LoaderCircleIcon className="mr-2 animate-spin" />
                 Deletando...
               </>
             ) : (
               <>
-                <img src={TrashIcon} alt="Adicionar" />
+                <I.TrashIcon />
                 Deletar tarefa
               </>
             )}

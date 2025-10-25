@@ -1,4 +1,4 @@
-import { CheckTasksIcon, LayoutListIcon, LoaderIcon } from '../assets/icons'
+import * as I from '../assets/icons'
 import { useGetTasks } from '../hooks/data/use-get-tasks'
 import { DashboardCard } from './dashboardCard'
 
@@ -13,17 +13,17 @@ export const DashboardCards = () => {
   return (
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 lg:grid-cols-3">
       <DashboardCard
-        icon={<img src={LayoutListIcon} alt="Adicionar" />}
+        icon={<I.LayoutListIcon />}
         mainText={totalTasks}
         secondaryText="Tarefas disponíveis"
       />
       <DashboardCard
-        icon={<img src={CheckTasksIcon} alt="Adicionar" />}
+        icon={<I.CheckTasksIcon />}
         mainText={completedTasks}
         secondaryText="Tarefas concluídas"
       />
       <DashboardCard
-        icon={<img src={LoaderIcon} alt="Adicionar" />}
+        icon={<I.LoaderIcon />}
         mainText={inProgressTasks}
         secondaryText="Tarefas em andamento"
       />

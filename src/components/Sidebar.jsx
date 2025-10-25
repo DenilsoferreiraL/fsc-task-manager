@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom'
 
-import { CheckTasksIcon, EditIcon, HomeIcon } from '../assets/icons'
+import * as I from '../assets/icons'
 import { SidebarButton } from './SidebarButton'
 
 export const Sidebar = () => {
@@ -25,18 +25,18 @@ export const Sidebar = () => {
       <div>
         <div className="flex flex-col gap-2 p-2">
           <SidebarButton to="/" disabled={isOnTaskDetail}>
-            <img src={HomeIcon} alt="Adicionar" />
+            <I.HomeIcon />
             Início
           </SidebarButton>
 
           <SidebarButton to="/tasks" disabled={isOnTaskDetail}>
-            <img src={CheckTasksIcon} alt="Adicionar" />
+            <I.CheckTasksIcon />
             Minhas tarefas
           </SidebarButton>
 
           {isOnTaskDetail && (
             <SidebarButton to={location.pathname}>
-              <img src={EditIcon} alt="Adicionar" />
+              <I.EditIcon />
               Detalhes da tarefa
             </SidebarButton>
           )}
