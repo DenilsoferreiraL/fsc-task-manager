@@ -1,4 +1,4 @@
-import * as I from '../assets/icons'
+import { CloudSunIcon, NightIcon, SunIcon } from '../assets/icons/index'
 import { useTasksLogic } from '../hooks/data/use-tasks-logic'
 import { TaskItem } from './TaskItem'
 import { TasksSeparator } from './TasksSeparator'
@@ -14,7 +14,7 @@ export const TasksPreview = () => {
     <div className="scrollbar-basic max-h-[360px] space-y-6 overflow-y-auto rounded-lg bg-white p-4 shadow-sm">
       {/* manhã */}
       <div className="space-y-2">
-        <TasksSeparator title="Manhã" icon={<I.SunIcon />} />
+        <TasksSeparator title="Manhã" icon={<SunIcon />} />
         {morningTasks?.length ? (
           morningTasks.map((task) => (
             <TaskItem
@@ -32,7 +32,7 @@ export const TasksPreview = () => {
 
       {/* tarde */}
       <div className="space-y-2">
-        <TasksSeparator title="Tarde" icon={<I.CloudSunIcon />} />
+        <TasksSeparator title="Tarde" icon={<CloudSunIcon />} />
         {afternoonTasks?.length ? (
           afternoonTasks.map((task) => (
             <TaskItem
@@ -50,7 +50,7 @@ export const TasksPreview = () => {
 
       {/* noite */}
       <div className="space-y-2">
-        <TasksSeparator title="Noite" icon={<I.NightIcon />} />
+        <TasksSeparator title="Noite" icon={<NightIcon />} />
         {eveningTasks?.length ? (
           eveningTasks.map((task) => (
             <TaskItem

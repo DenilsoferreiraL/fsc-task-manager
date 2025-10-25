@@ -2,7 +2,12 @@ import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import * as I from '../assets/icons'
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  LoaderCircleIcon,
+  TrashIcon,
+} from '../assets/icons'
 import { Button } from '../components/Button'
 import { Input } from '../components/Input'
 import { Sidebar } from '../components/Sidebar'
@@ -57,7 +62,7 @@ export const TaskDetailsPage = () => {
           onClick={handleBackClick}
           className="mb-3 flex h-8 w-8 items-center justify-center rounded-full bg-brand-primary transition hover:opacity-70"
         >
-          <I.ArrowLeftIcon />
+          <ArrowLeftIcon />
         </button>
 
         {/* Breadcrumb */}
@@ -68,7 +73,7 @@ export const TaskDetailsPage = () => {
           >
             Minhas tarefas
           </span>
-          <I.ArrowRightIcon />
+          <ArrowRightIcon />
           <span className="text-sm font-semibold text-brand-primary">
             {task?.title}
           </span>
@@ -85,12 +90,12 @@ export const TaskDetailsPage = () => {
           >
             {deleteTask.isPending ? (
               <>
-                <I.LoaderCircleIcon className="mr-2 animate-spin" />
+                <LoaderCircleIcon className="mr-2 animate-spin" />
                 Deletando...
               </>
             ) : (
               <>
-                <I.TrashIcon />
+                <TrashIcon />
                 Deletar tarefa
               </>
             )}
