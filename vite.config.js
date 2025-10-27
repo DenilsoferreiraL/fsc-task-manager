@@ -4,9 +4,6 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   plugins: [react()],
   resolve: {
-    alias: {},
-  },
-  build: {
-    assetsInclude: ['**/*.svg'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.svg'],
   },
 })
