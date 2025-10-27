@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 
-import { AddIcon } from '../assets/icons'
+import AddIcon from '../assets/icons/add.svg'
 import { AddTaskDialog } from './AddTaskDialog'
 import { Button } from './Button'
+import { Icon } from './Icon'
 
 export const Header = ({ subtitle, title }) => {
   const [addTaskDialogIsOpen, setAddTaskDialogIsOpen] = useState(false)
@@ -20,7 +21,7 @@ export const Header = ({ subtitle, title }) => {
       <div className="flex items-center gap-3">
         <Button onClick={() => setAddTaskDialogIsOpen(true)}>
           Nova tarefa
-          <AddIcon />
+          <Icon src={AddIcon} alt="Adicionar" />
         </Button>
         <AddTaskDialog
           isOpen={addTaskDialogIsOpen}

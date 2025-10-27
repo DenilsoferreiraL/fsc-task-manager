@@ -2,13 +2,12 @@ import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import {
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  LoaderCircleIcon,
-  TrashIcon,
-} from '../assets/icons'
+import ArrowLeftIcon from '../assets/icons/arrow-left.svg'
+import ArrowRightIcon from '../assets/icons/arrow-right.svg'
+import LoaderCircleIcon from '../assets/icons/loader-circle.svg'
+import TrashIcon from '../assets/icons/trash.svg'
 import { Button } from '../components/Button'
+import { Icon } from '../components/Icon'
 import { Input } from '../components/Input'
 import { Sidebar } from '../components/Sidebar'
 import { TextArea } from '../components/TextArea'
@@ -16,6 +15,8 @@ import { TimeSelect } from '../components/TimeSelect'
 import { useDeleteTask } from '../hooks/data/use-delete-task'
 import { useGetTasks } from '../hooks/data/use-get-tasks'
 import { useUpdatedTask } from '../hooks/data/use-updated-task'
+
+// Componente para ícones SVG
 
 export const TaskDetailsPage = () => {
   const { taskId } = useParams()
@@ -62,7 +63,7 @@ export const TaskDetailsPage = () => {
           onClick={handleBackClick}
           className="mb-3 flex h-8 w-8 items-center justify-center rounded-full bg-brand-primary transition hover:opacity-70"
         >
-          <ArrowLeftIcon />
+          <Icon src={ArrowLeftIcon} alt="Voltar" />
         </button>
 
         {/* Breadcrumb */}
@@ -73,7 +74,7 @@ export const TaskDetailsPage = () => {
           >
             Minhas tarefas
           </span>
-          <ArrowRightIcon />
+          <Icon src={ArrowRightIcon} alt="Seta direita" />
           <span className="text-sm font-semibold text-brand-primary">
             {task?.title}
           </span>
@@ -90,12 +91,16 @@ export const TaskDetailsPage = () => {
           >
             {deleteTask.isPending ? (
               <>
-                <LoaderCircleIcon className="mr-2 animate-spin" />
+                <Icon
+                  src={LoaderCircleIcon}
+                  alt="Carregando"
+                  className="mr-2 animate-spin"
+                />
                 Deletando...
               </>
             ) : (
               <>
-                <TrashIcon />
+                <Icon src={TrashIcon} alt="Deletar" />
                 Deletar tarefa
               </>
             )}

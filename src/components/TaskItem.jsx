@@ -2,14 +2,13 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { toast } from 'sonner'
 
-import {
-  CheckIcon,
-  DetailIcon,
-  LoaderCircleIcon,
-  TrashIcon,
-} from '../assets/icons'
+import CheckIcon from '../assets/icons/check.svg'
+import DetailIcon from '../assets/icons/detail.svg'
+import LoaderCircleIcon from '../assets/icons/loader-circle.svg'
+import TrashIcon from '../assets/icons/trash.svg'
 import { Button } from '../components/Button'
 import { useDeleteTask } from '../hooks/data/use-delete-task'
+import { Icon } from './Icon'
 
 export const TaskItem = ({ task, handleTaskCheckboxClick }) => {
   const { mutate, isPending } = useDeleteTask(task.id)
@@ -19,7 +18,7 @@ export const TaskItem = ({ task, handleTaskCheckboxClick }) => {
       onSuccess: () => {
         toast.success('Tarefa deletada com sucesso!')
       },
-      OnError: () => {
+      onError: () => {
         toast.error('Erro ao deletar tarefa!')
       },
     })
@@ -68,9 +67,15 @@ export const TaskItem = ({ task, handleTaskCheckboxClick }) => {
             className="absolute h-full w-full cursor-pointer opacity-0"
             onChange={() => handleTaskCheckboxClick(task.id)}
           />
-          {task.status === 'done' && <CheckIcon className="animate-pulse" />}
+          {task.status === 'done' && (
+            <Icon src={CheckIcon} alt="Concluído" className="animate-pulse" />
+          )}
           {task.status === 'in_progress' && (
-            <LoaderCircleIcon className="animate-spin text-brand-white" />
+            <Icon
+              src={LoaderCircleIcon}
+              alt="Em progresso"
+              className="animate-spin text-brand-white"
+            />
           )}
         </label>
 
@@ -79,16 +84,20 @@ export const TaskItem = ({ task, handleTaskCheckboxClick }) => {
       <div className="flex items-center gap-2">
         <Button color="ghost" onClick={handleDeleteClick} disabled={isPending}>
           {isPending ? (
-            <LoaderCircleIcon className="text-brand-gray animate-spin" />
+            <Icon
+              src={LoaderCircleIcon}
+              alt="Deletando"
+              className="text-brand-gray animate-spin"
+            />
           ) : (
-            <TrashIcon className="text-brand-danger" />
+            <Icon src={TrashIcon} alt="Deletar" className="text-brand-danger" />
           )}
         </Button>
         <Link
           to={`/task/${task.id}`}
           className="rounded-lg bg-brand-white px-3 py-1 text-brand-primary shadow-md transition hover:opacity-75"
         >
-          <DetailIcon />
+          <Icon src={DetailIcon} alt="Detalhes" />
         </Link>
       </div>
     </div>
@@ -104,5 +113,4 @@ TaskItem.propTypes = {
     status: PropTypes.oneOf(['not_started', 'in_progress', 'done']).isRequired,
   }).isRequired,
   handleTaskCheckboxClick: PropTypes.func.isRequired,
-  handleTaskDeleteClick: PropTypes.func.isRequired,
 }
