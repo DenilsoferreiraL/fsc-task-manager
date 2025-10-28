@@ -1,5 +1,5 @@
 import { useGetTasks } from '../hooks/data/use-get-tasks'
-import { DashboardCard } from './DashboardCard'
+import { CardItem } from './CardItem'
 import { Icon } from './Icon'
 
 export const DashboardCards = () => {
@@ -13,7 +13,7 @@ export const DashboardCards = () => {
 
   return (
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 lg:grid-cols-3">
-      <DashboardCard
+      <CardItem
         icon={
           <Icon src="/assets/icons/layout-list.svg" alt="Lista de tarefas" />
         }
@@ -21,7 +21,7 @@ export const DashboardCards = () => {
         secondaryText="Tarefas disponíveis"
       />
 
-      <DashboardCard
+      <CardItem
         icon={
           <Icon src="/assets/icons/check-tasks.svg" alt="Tarefas concluídas" />
         }
@@ -29,7 +29,7 @@ export const DashboardCards = () => {
         secondaryText="Tarefas concluídas"
       />
 
-      <DashboardCard
+      <CardItem
         icon={
           <Icon src="/assets/icons/loader.svg" alt="Tarefas em andamento" />
         }
@@ -37,7 +37,7 @@ export const DashboardCards = () => {
         secondaryText="Tarefas em andamento"
       />
 
-      {/* <DashboardCard
+      {/* <CardItem
         icon={<Icon src={GlassWaterIcon} alt="Água" />}
         mainText="40%"
         secondaryText="Água"

@@ -1,4 +1,4 @@
-export const DashboardCard = ({ icon, mainText, secondaryText }) => {
+export const CardItem = ({ icon, mainText, secondaryText }) => {
   return (
     <div className="flex h-[150px] flex-col items-center justify-center gap-1 rounded-[10px] bg-brand-white shadow-md">
       <div className="flex items-center gap-2 font-semibold">
