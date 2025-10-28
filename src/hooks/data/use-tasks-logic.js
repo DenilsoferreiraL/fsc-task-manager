@@ -2,6 +2,7 @@ import { useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
 import { taskQueryKeys } from '../../Keys/queries'
+import { api } from '../../lib/axios'
 import { useGetTasks } from './use-get-tasks'
 
 export const useTasksLogic = () => {
@@ -9,35 +10,47 @@ export const useTasksLogic = () => {
   const { data: tasks } = useGetTasks()
 
   const handleTaskCheckboxClick = async (taskId) => {
-    const newTasks = tasks?.map((task) => {
-      if (task.id !== taskId) return task
+    // Encontra a tarefa atual
+    const currentTask = tasks?.find((task) => task.id === taskId)
+    if (!currentTask) return
 
-      if (task.status === 'not_started') {
+    // Determina o próximo status
+    let newStatus
+    switch (currentTask.status) {
+      case 'not_started':
+        newStatus = 'in_progress'
         toast.success('Tarefa iniciada com sucesso!')
-        return { ...task, status: 'in_progress' }
-      } else if (task.status === 'in_progress') {
+        break
+      case 'in_progress':
+        newStatus = 'done'
         toast.success('Tarefa concluída com sucesso!')
-        return { ...task, status: 'done' }
-      } else if (task.status === 'done') {
+        break
+      case 'done':
+        newStatus = 'not_started'
         toast.info('Tarefa reiniciada com sucesso!')
-        return { ...task, status: 'not_started' }
-      }
-      return task
-    })
+        break
+      default:
+        return
+    }
 
-    queryClient.setQueriesData(taskQueryKeys.getAll(), newTasks)
+    // Otimistic update - atualiza o cache primeiro
+    const updatedTasks = tasks?.map((task) =>
+      task.id === taskId ? { ...task, status: newStatus } : task
+    )
 
-    const updatedTask = newTasks.find((t) => t.id === taskId)
+    queryClient.setQueryData(taskQueryKeys.getAll(), updatedTasks)
 
     try {
-      const response = await fetch(`http://localhost:3000/tasks/${taskId}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status: updatedTask.status }),
-      })
-      if (!response.ok) throw new Error('Erro ao atualizar no servidor')
+      // Usa o Axios configurado em vez de fetch
+      await api.patch(`/tasks/${taskId}`, { status: newStatus })
+
+      // Recarrega os dados para garantir sincronização
+      await queryClient.invalidateQueries(taskQueryKeys.getAll())
     } catch (error) {
-      console.error(error)
+      console.error('Erro ao atualizar tarefa:', error)
+
+      // Reverte o optimistic update em caso de erro
+      queryClient.setQueryData(taskQueryKeys.getAll(), tasks)
       toast.error('Erro ao atualizar o status da tarefa!')
     }
   }
