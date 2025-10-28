@@ -2,10 +2,6 @@ import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import ArrowLeftIcon from '../assets/icons/arrow-left.svg'
-import ArrowRightIcon from '../assets/icons/arrow-right.svg'
-import LoaderCircleIcon from '../assets/icons/loader-circle.svg'
-import TrashIcon from '../assets/icons/trash.svg'
 import { Button } from '../components/Button'
 import { Icon } from '../components/Icon'
 import { Input } from '../components/Input'
@@ -63,7 +59,7 @@ export const TaskDetailsPage = () => {
           onClick={handleBackClick}
           className="mb-3 flex h-8 w-8 items-center justify-center rounded-full bg-brand-primary transition hover:opacity-70"
         >
-          <Icon src={ArrowLeftIcon} alt="Voltar" />
+          <Icon src="/assets/icons/arrow-left.svg" alt="Voltar" />
         </button>
 
         {/* Breadcrumb */}
@@ -74,7 +70,7 @@ export const TaskDetailsPage = () => {
           >
             Minhas tarefas
           </span>
-          <Icon src={ArrowRightIcon} alt="Seta direita" />
+          <Icon src="/assets/icons/arrow-right.svg" alt="Seta direita" />
           <span className="text-sm font-semibold text-brand-primary">
             {task?.title}
           </span>
@@ -92,7 +88,7 @@ export const TaskDetailsPage = () => {
             {deleteTask.isPending ? (
               <>
                 <Icon
-                  src={LoaderCircleIcon}
+                  src="/assets/icons/loader-circle.svg"
                   alt="Carregando"
                   className="mr-2 animate-spin"
                 />
@@ -100,7 +96,7 @@ export const TaskDetailsPage = () => {
               </>
             ) : (
               <>
-                <Icon src={TrashIcon} alt="Deletar" />
+                <Icon src="/assets/icons/trash.svg" alt="Deletar" />
                 Deletar tarefa
               </>
             )}

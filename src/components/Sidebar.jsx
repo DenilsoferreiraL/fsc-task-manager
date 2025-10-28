@@ -1,8 +1,5 @@
 import { useLocation } from 'react-router-dom'
 
-import CheckTasksIcon from '../assets/icons/check-tasks.svg'
-import EditIcon from '../assets/icons/edit.svg'
-import HomeIcon from '../assets/icons/home.svg'
 import { Icon } from './Icon'
 import { SidebarButton } from './SidebarButton'
 
@@ -28,18 +25,18 @@ export const Sidebar = () => {
       <div>
         <div className="flex flex-col gap-2 p-2">
           <SidebarButton to="/" disabled={isOnTaskDetail}>
-            <Icon src={HomeIcon} alt="Início" />
+            <Icon src="/assets/icons/home.svg" alt="Início" />
             Início
           </SidebarButton>
 
           <SidebarButton to="/tasks" disabled={isOnTaskDetail}>
-            <Icon src={CheckTasksIcon} alt="Minhas tarefas" />
+            <Icon src="/assets/icons/check-tasks.svg" alt="Minhas tarefas" />
             Minhas tarefas
           </SidebarButton>
 
           {isOnTaskDetail && (
             <SidebarButton to={location.pathname}>
-              <Icon src={EditIcon} alt="Detalhes da tarefa" />
+              <Icon src="/assets/icons/edit.svg" alt="Detalhes da tarefa" />
               Detalhes da tarefa
             </SidebarButton>
           )}

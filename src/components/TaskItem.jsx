@@ -2,10 +2,6 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { toast } from 'sonner'
 
-import CheckIcon from '../assets/icons/check.svg'
-import DetailIcon from '../assets/icons/detail.svg'
-import LoaderCircleIcon from '../assets/icons/loader-circle.svg'
-import TrashIcon from '../assets/icons/trash.svg'
 import { Button } from '../components/Button'
 import { useDeleteTask } from '../hooks/data/use-delete-task'
 import { Icon } from './Icon'
@@ -68,11 +64,15 @@ export const TaskItem = ({ task, handleTaskCheckboxClick }) => {
             onChange={() => handleTaskCheckboxClick(task.id)}
           />
           {task.status === 'done' && (
-            <Icon src={CheckIcon} alt="Concluído" className="animate-pulse" />
+            <Icon
+              src="/assets/icons/check.svg"
+              alt="Concluído"
+              className="animate-pulse"
+            />
           )}
           {task.status === 'in_progress' && (
             <Icon
-              src={LoaderCircleIcon}
+              src="/assets/icons/loader-circle.svg"
               alt="Em progresso"
               className="animate-spin text-brand-white"
             />
@@ -85,19 +85,23 @@ export const TaskItem = ({ task, handleTaskCheckboxClick }) => {
         <Button color="ghost" onClick={handleDeleteClick} disabled={isPending}>
           {isPending ? (
             <Icon
-              src={LoaderCircleIcon}
+              src="/assets/icons/loader-circle.svg"
               alt="Deletando"
               className="text-brand-gray animate-spin"
             />
           ) : (
-            <Icon src={TrashIcon} alt="Deletar" className="text-brand-danger" />
+            <Icon
+              src="/assets/icons/trash.svg"
+              alt="Deletar"
+              className="text-brand-danger"
+            />
           )}
         </Button>
         <Link
           to={`/task/${task.id}`}
           className="rounded-lg bg-brand-white px-3 py-1 text-brand-primary shadow-md transition hover:opacity-75"
         >
-          <Icon src={DetailIcon} alt="Detalhes" />
+          <Icon src="/assets/icons/detail.svg" alt="Detalhes" />
         </Link>
       </div>
     </div>
